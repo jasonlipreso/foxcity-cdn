@@ -1,3 +1,7 @@
+
+
+/* Common container */
+
 .wrapper { width: 100%; box-sizing: border-box; }
 .abs-fit-screen { position: absolute; top: 0px; left: 0px; width: 100%;height: 100%; }
 .rel-fit-screen { position: relative;width: 100%;height: 100px;top: 0px;left: 0px; }
@@ -9,3 +13,29 @@
 .d-f-sa { display: flex; flex-wrap: wrap; justify-content: space-around; }
 .d-f-st { display: flex; flex-wrap: wrap; justify-content: flex-start; }
 .d-f-ed { display: flex; flex-wrap: wrap; justify-content: flex-end; }
+
+/* Common component container */
+.fox-base-container {position: fixed;top: 0px;left: 0px;width: 100%;height: 100%;}
+.fox-base-container .header {position: absolute;top: 0px;width: 100%;height: 120px;}
+.fox-base-container .header .logo {position: absolute;top: 5px;left: 10px;width: auto;height: 70px;}
+.fox-base-container .header .top {width: 100%;height: 30px;}
+.fox-base-container .header .center {width: 100%;height: 50px;}
+.fox-base-container .header .center .profile-pic { width: 40px;height: 40px;margin: 5px; }
+.fox-base-container .header .center .profile-pic img { width: 40px;height: 40px;}
+.fox-base-container .header .center .profile-info { width: auto;height: 35px;margin: 10px 5px 0px 0px; }
+.fox-base-container .header .center .profile-info p { font-family: sans-serif;text-align: right;letter-spacing: 1px; }
+.fox-base-container .header .center .profile-info .name { font-size: 16px;font-weight: bold; }
+.fox-base-container .header .center .profile-info .address { font-size: 14px;margin-top: 3px;}
+.fox-base-container .header .bottom {width: 100%;height: 40px;}
+.fox-base-container .header .bottom .menu-base {position: relative; width: 30px;height: 30px;margin: 5px;}
+.fox-base-container .header .bottom .menu-base img { width: 26px;height: 26px;margin: 2px; }
+.fox-base-container .header .bottom .menu-base .counter {position: absolute;top: -3px;right: 0px;padding: 2px 3px;font-family: sans-serif; font-size: 11px;color: white;background-color: red;border-radius: 3px; }
+.fox-base-container .body {position: absolute;top: 120px;width: 100%;height: calc(100% - 170px);background-color: transparent;overflow: auto;}
+.fox-base-container .footer {position: absolute;bottom: 0px;width: 100%;height: 50px;}
+.fox-base-container .footer .menu-base {position: relative;width: 50px;height: 50px;}
+.fox-base-container .footer .menu-base .icon { width: 40px;height: 40px;margin: 5px; }
+.fox-base-container .footer .menu-base .counter {position: absolute;top: 5px;right: 0px;padding: 2px 3px;font-family: sans-serif; font-size: 12px;color: white;background-color: red;border-radius: 4px; }
+
+
+
+

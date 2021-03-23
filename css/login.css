@@ -1,0 +1,110 @@
+  .login .body button {
+    display: block;
+    margin: 50px auto 0px auto;
+    padding: 14px 60px;
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+  .login .body .show-password img {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+  }
+  .login .body .show-password span {
+    margin-top: 10px;
+    font-family: sans-serif;
+    font-size: 14px;
+  }
+  .login .body .input-box {
+    display: flex;
+    margin: 20px auto 0px auto;
+    width: 300px;
+    height: 50px;
+    background-color: transparent;
+    border: 1px solid #8d8c8c;
+    border-radius: 6px;
+  }
+  .login .body .input-box img {
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+  }
+  .login .body .input-box input[type='email'],
+  .login .body .input-box input[type='password'] {
+    outline: none;
+    font-size: 16px;
+    letter-spacing: 2px;
+    border: none;
+    background-color: transparent;
+  }
+  .login {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+  }
+  .login .header {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 120px;
+  }
+  .login .header .logo {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    width: auto;
+    height: 70px;
+  }
+  .login .header .apply {
+    position: absolute;
+    margin-top: 5px;
+    right: 5px;
+    padding: 10px 30px;
+    border: 1px solid #7b7a7a;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: white;
+    background-color: transparent;
+  }
+  .login .header .top {
+    width: 100%;
+    height: 30px;
+  }
+  .login .header .center {
+    width: 100%;
+    height: 50px;
+  }
+  .login .header .bottom {
+    width: 100%;
+    height: 40px;
+  }
+  .login .body {
+    position: absolute;
+    top: 120px;
+    width: 100%;
+    height: calc(100% - 170px);
+    background-color: transparent;
+    overflow: auto;
+  }
+  .login .body .txt-logo {
+    display: block;
+    width: 70%;
+    height: auto;
+    margin: 40px auto 0px auto;
+  }
+  .login .footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 50px;
+  }
+  .login .footer p {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #53594f;
+    line-height: 50px;
+  }

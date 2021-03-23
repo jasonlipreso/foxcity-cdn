@@ -1,21 +1,50 @@
 <?php
 
 /* GLOBAL REPOSITORIES */
-$REPO_CDN                 = '../foxcity-cdn/';
-$REPO_RESTAURANT_APP      = '../foxcity-mobile-restaurant/';
-$REPO_RIDER_APPP          = '../foxcity-rider/';
-$REPO_FOXCITY_APP         = '../foxcity-app/';
+$REPO_CDN                     = '../foxcity-cdn/';
+$REPO_RESTAURANT_APP          = '../foxcity-mobile-restaurant/';
+$REPO_RIDER_APPP              = '../foxcity-rider/';
+$REPO_FOXCITY_APP             = '../foxcity-app/';
 
 /* META DATA REQUIREMENTS:CSS & JS */
-$LINK_CSS_RESET           = $REPO_CDN. 'css/reset.css';
-$LINK_CSS_CONTAINER       = $REPO_CDN. 'css/container.css';
-$LINK_JS_JQUERY           = $REPO_CDN. 'js/jquery.min.js';
-$LINK_JS_LAYER_SWITCHER   = $REPO_CDN. 'js/cmn-layer-switcher.js';
+$LINK_CSS_RESET               = $REPO_CDN. 'css/reset.css';
+$LINK_CSS_BUTTON              = $REPO_CDN. 'css/button.css';
+$LINK_CSS_MARGIN              = $REPO_CDN. 'css/margin.css';
+$LINK_CSS_PADDING             = $REPO_CDN. 'css/padding.css';
+$LINK_CSS_CONTAINER           = $REPO_CDN. 'css/container.css';
+$LINK_CSS_COLOR               = $REPO_CDN. 'css/color.css';
+$LINK_CSS_TEXT                = $REPO_CDN. 'css/text.css';
+$LINK_CSS_SPLASH_SCREEN       = $REPO_CDN. 'css/splash-screen.css';
+$LINK_CSS_LOGIN               = $REPO_CDN. 'css/login.css';
+$LINK_JS_JQUERY               = $REPO_CDN. 'js/jquery.min.js';
+$LINK_JS_LAYER_SWITCHER       = $REPO_CDN. 'js/cmn-layer-switcher.js';
 
 /* META DATA REQUIREMENTS:API */
-$LINK_JS_CMN_API          = $REPO_CDN. 'js/api-common.js';
-$LINK_JS_GUEST_API        = $REPO_CDN. 'js/api-guest.js';
-$LINK_JS_SHOP_API         = $REPO_CDN. 'js/api-shop.js';
-$LINK_JS_AUTHENTICATE_API = $REPO_CDN. 'js/api-authentication.js';
+$LINK_JS_CMN_API              = $REPO_CDN. 'js/api-common.js';
+$LINK_JS_GUEST_API            = $REPO_CDN. 'js/api-guest.js';
+$LINK_JS_SHOP_API             = $REPO_CDN. 'js/api-shop.js';
+$LINK_JS_AUTHENTICATE_API     = $REPO_CDN. 'js/api-authentication.js';
+
+
+/* IMAGE ASSETS */
+$IMG_LOGO_TEXT_GRAY           = $REPO_CDN. 'img/logo-text-gray.jpg';
+$IMG_LOGO_TXT_TRANSPARENT     = $REPO_CDN. 'img/logo-text-transparent.png';
+$IMG_LOGO_FACE_COLORED        = $REPO_CDN. 'img/logo-face-colored.png';
+$IMG_LOGO_FACE_LIGHT          = $REPO_CDN. 'img/logo-light.png';
+$IMG_ICON_ACC_LIGHT_GRAY      = $REPO_CDN. 'img/account-circle-light-gray.svg';
+$IMG_ICON_ACC_WHITE           = $REPO_CDN. 'img/account-circle-white.svg';
+$IMG_ICON_KEY_LIGHT_GRAY      = $REPO_CDN. 'img/key-light-gray.svg';
+$IMG_ICON_HOME_PURPLE         = $REPO_CDN. 'img/home-purple.svg';
+$IMG_ICON_BOOKING_PURPLE      = $REPO_CDN. 'img/booking-purple.svg';
+$IMG_ICON_ASSIGNED_PURPLE     = $REPO_CDN. 'img/assignment-purple.svg';
+$IMG_ICON_SETTING_PURPLE      = $REPO_CDN. 'img/setting-purple.svg';
+$IMG_ICON_LOCATION_PURPLE     = $REPO_CDN. 'img/location-purple.svg';
+$IMG_ICON_MESSAGE_PURPLE      = $REPO_CDN. 'img/message-purple.svg';
+$IMG_ICON_FOOD_001            = $REPO_CDN. 'img/food-icon-001.png';
+$IMG_ICON_CHECK_GREEN         = $REPO_CDN. 'img/check-mark-green.svg';
+$IMG_ICON_CHECK_GRAY          = $REPO_CDN. 'img/check-mark-gray.svg';
+$IMG_ICON_CALL_WHITE          = $REPO_CDN. 'img/call-white.svg';
+
+
 
 ?>

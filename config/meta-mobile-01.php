@@ -6,7 +6,12 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_RESET; ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_MARGIN; ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_PADDING; ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_CONTAINER; ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_COLOR; ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_TEXT; ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_BUTTON; ?>">
 <script type="text/javascript" src = "<?php echo $LINK_JS_JQUERY; ?>"></script>
 <script type="text/javascript" src = "<?php echo $LINK_JS_LAYER_SWITCHER; ?>"></script>
 <script type="text/javascript" src = "<?php echo $LINK_JS_CMN_API; ?>"></script>
