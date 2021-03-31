@@ -1,4 +1,4 @@
-.bg-yellow { background-color: #fcd80b !important; }
+.bg-yellow { background-color: #fed70c !important; }
 .bg-orange { background-color: #fdb813 !important; }
 .bg-purple { background-color: #614b9f !important; }
 .bg-purple-light { background-color: #b7a3cf !important; }
@@ -6,10 +6,14 @@
 .bg-darkwhite { background-color: #b7a3cf21 !important; }
 .bg-purple-ligher { background-color: #d1cbe3 !important; }
 .bg-light-gray { background-color: #8d8c8c !important; }
-.cl-black { color: #1f1b2d !important; }
+.bg-lightest-gray { background-color: #ececec !important; }
+.bg-facebook { background-color: #0095ff !important; }
+.bg-transparent { background-color: transparent !important; }
+.cl-black { color: #2e2c35 !important; }
 .cl-gray { color: #5f5f5f !important; }
-.cl-yellow { color: #fcd80b !important; }
+.cl-yellow { color: #fed70c !important; }
 .cl-orange { color: #fdb813 !important; }
+.cl-dark-orange { color: #d04a0a !important; }
 .cl-purple { color: #614b9f !important; }
 .cl-purple-light { color: #b7a3cf !important; }
 .cl-white { color: white !important;}

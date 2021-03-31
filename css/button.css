@@ -1,3 +1,30 @@
 .bttn-01 {padding: 10px 25px; background-color: #614b9f;color: white;font-size: 14px;font-weight: bold;letter-spacing: 1px;border: 3px solid #a494d0;border-radius: 20px; }
 .bttn-02 {padding: 10px 25px; background-color: red;color: white;font-size: 14px;font-weight: bold;letter-spacing: 1px;border: 3px solid #ffacac;border-radius: 20px; }
 .bttn-03 {padding: 10px 25px; background-color: green;color: white;font-size: 14px;font-weight: bold;letter-spacing: 1px;border: 3px solid #0ee00e;border-radius: 20px; }
+
+.bttn-04 { padding: 14px 0px;width: 100%;font-size: 16px;border-radius: 10px; }
+.bttn-disabled { opacity: 0.4; }
+
+
+
+@media only screen and (min-width: 320px) and (max-width: 360px) {
+
+}
+
+@media only screen and (min-width: 361px) and (max-width: 375px) {
+
+}
+
+@media only screen and (min-width: 376px) and (max-width: 414px) {
+
+}
+
+@media only screen and (min-width: 415px) and (max-width: 481px) {
+
+}
+
+@media only screen and (min-width: 482px) and (max-width: 768px) {
+
+}
+
+

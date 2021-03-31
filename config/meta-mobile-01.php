@@ -12,10 +12,14 @@
 <link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_COLOR; ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_TEXT; ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_BUTTON; ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_INPUT; ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_LODING; ?>">
 <script type="text/javascript" src = "<?php echo $LINK_JS_JQUERY; ?>"></script>
+<script type="text/javascript" src = "<?php echo $LINK_JS_JQUERY_3_6_0; ?>"></script>
 <script type="text/javascript" src = "<?php echo $LINK_JS_LAYER_SWITCHER; ?>"></script>
 <script type="text/javascript" src = "<?php echo $LINK_JS_CMN_API; ?>"></script>
-<script type="text/javascript" src = "<?php echo $LINK_JS_GUEST_API; ?>"></script>
+<script type="text/javascript" src = "<?php echo $LINK_JS_USER_API; ?>"></script>
 <script type="text/javascript" src = "<?php echo $LINK_JS_SHOP_API; ?>"></script>
 <script type="text/javascript" src = "<?php echo $LINK_JS_AUTHENTICATE_API; ?>"></script>
+<script type="text/javascript" src = "<?php echo $LINK_JS_TEXT_API; ?>"></script>
 
