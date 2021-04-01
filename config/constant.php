@@ -15,6 +15,7 @@ $LINK_CSS_CONTAINER           = $REPO_CDN. 'css/container.css';
 $LINK_CSS_COLOR               = $REPO_CDN. 'css/color.css';
 $LINK_CSS_TEXT                = $REPO_CDN. 'css/text.css';
 $LINK_CSS_INPUT               = $REPO_CDN. 'css/input.css';
+$LINK_CSS_SELECT              = $REPO_CDN. 'css/dropdown.css';
 $LINK_CSS_SPLASH_SCREEN       = $REPO_CDN. 'css/splash-screen.css';
 $LINK_CSS_LOGIN               = $REPO_CDN. 'css/login.css';
 $LINK_CSS_LODING              = $REPO_CDN. 'css/loading.css';

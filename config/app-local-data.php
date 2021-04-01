@@ -1,10 +1,31 @@
 <?php
 
 if(isset($_GET['reference_id'])) {
-  $guest =  $_GET['reference_id'];
+  $user =  $_GET['reference_id'];
 }
 else {
-  $guest = "";
+  $user = "";
+}
+
+if(isset($_GET['first_name'])) {
+  $first_name =  $_GET['first_name'];
+}
+else {
+  $first_name = "";
+}
+
+if(isset($_GET['last_name'])) {
+  $last_name =  $_GET['last_name'];
+}
+else {
+  $last_name = "";
+}
+
+if(isset($_GET['email'])) {
+  $email =  $_GET['email'];
+}
+else {
+  $email = "";
 }
 
 if(isset($_GET['token'])) {
@@ -14,15 +35,20 @@ else {
   $token = "";
 }
 
-
-
 ?>
 
 <!-- JSON Format prerequisite data -->
 <input id = "local-data-app-prerequisite" type="hidden" value = "[]" name="local-data-app-prerequisite">
 
-<!-- Guest Reference ID -->
-<input id = "local-data-guest" type="hidden" value = "<?php echo $guest; ?>" name="local-data-guest">
+<!-- User Reference ID -->
+<input id = "local-data-user-refid" type="hidden" value = "<?php echo $user; ?>" name="local-data-user-refid">
+<input id = "local-data-user-firstname" type="hidden" value = "<?php echo $first_name; ?>" name="local-data-user-firstname">
+<input id = "local-data-user-lastname" type="hidden" value = "<?php echo $last_name; ?>" name="local-data-user-lastname">
+<input id = "local-data-user-email" type="hidden" value = "<?php echo $email; ?>" name="local-data-user-email">
+
+<input id = "local-data-user-location-province" type="hidden" value = "{}" name="">
+<input id = "local-data-user-location-city" type="hidden" value = "{}" name="">
+<input id = "local-data-user-location-brgy" type="hidden" value = "{}" name="">
 
 <!-- Access Token of the Guest -->
 <input id = "local-data-token" type="hidden" value = "<?php echo $token; ?>" name="local-data-token">

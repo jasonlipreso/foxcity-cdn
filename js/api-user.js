@@ -40,8 +40,6 @@
     };
 
     FoxUser.verifyOTP = function (args, callback) {
-      console.log(args);
-      //http://127.0.0.1:8000/api/ref_id=USR-033121081438-YXA&otp=4652
       var url = FoxCAPI.getAPIResource() + "common/verifyOTP_with_tag?"+jQuery.param(args);
         $.ajax({
           url: url,
@@ -53,6 +51,22 @@
             callback(response);
           }
         });
+    };
+
+    FoxUser.login = function (args, callback) {
+      FoxCAPI.console('Login Parameter: ', args);
+      var url = FoxCAPI.getAPIResource() + "user/logIn?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('Login Response: ', response);
+          callback(response);
+        }
+      });
     };
 
     return FoxUser;

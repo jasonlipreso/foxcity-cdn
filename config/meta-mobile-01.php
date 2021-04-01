@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_TEXT; ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_BUTTON; ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_INPUT; ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_SELECT; ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_LODING; ?>">
 <script type="text/javascript" src = "<?php echo $LINK_JS_JQUERY; ?>"></script>
 <script type="text/javascript" src = "<?php echo $LINK_JS_JQUERY_3_6_0; ?>"></script>

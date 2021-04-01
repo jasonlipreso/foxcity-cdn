@@ -5,6 +5,21 @@
   function FoxCity_CommonAPI() {
 
     var FoxCAPI = {};
+    var debug   = true;
+    var app_config = {
+      'resource':'http://127.0.0.1:8000/api/'
+    };
+
+    FoxCAPI.console = function (name, args) {
+      if(debug) {
+        console.log(name+' | '+ new Date());
+        console.log(args);
+      }
+    };
+
+    FoxCAPI.getAPIResource = function () {
+      return app_config.resource;
+    };
 
     FoxCAPI.isValidEmail = function (email) {
       var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -23,16 +38,24 @@
       $('.loading').css({'display':'none'});
     };
 
-    FoxCAPI.getAPIResource = function () {
-      return "http://127.0.0.1:8000/api/";
-    };
-
     FoxCAPI.getAppToken = function () {
       return $('#local-data-token').val();
     };
 
-    FoxCAPI.getAppGuest = function () {
-      return $('#local-data-guest').val();
+    FoxCAPI.getAppUserRefID = function () {
+      return $('#local-data-user-refid').val();
+    };
+
+    FoxCAPI.getAppUserFirstname = function () {
+      return $('#local-data-user-firstname').val();
+    };
+
+    FoxCAPI.getAppUserLastname = function () {
+      return $('#local-data-user-lastname').val();
+    };
+
+    FoxCAPI.getAppUserEmail = function () {
+      return $('#local-data-user-email').val();
     };
 
     FoxCAPI.getAppShop = function () {
@@ -78,6 +101,51 @@
               clearInterval(interval);
           }
       }, 1000);
+    };
+
+    FoxCAPI.getLocationProvinceList = function (region, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/getProvinceList/"+region;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('Province List:', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getLocationCityList = function (province, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/getCityList/"+province;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('City List:', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getLocationBarangayList = function (city, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/getBarangayList/"+city;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('Barangy List:', response);
+          callback(response);
+        }
+      });
     };
 
     return FoxCAPI;
