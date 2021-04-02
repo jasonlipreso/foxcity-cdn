@@ -7,7 +7,8 @@
     var FoxCAPI = {};
     var debug   = true;
     var app_config = {
-      'resource':'http://127.0.0.1:8000/api/'
+      'resource':'http://127.0.0.1:8000/api/',
+      'default_region':'07'
     };
 
     FoxCAPI.console = function (name, args) {
@@ -15,6 +16,10 @@
         console.log(name+' | '+ new Date());
         console.log(args);
       }
+    };
+
+    FoxCAPI.defaultRegion = function () {
+      return app_config.default_region;
     };
 
     FoxCAPI.getAPIResource = function () {
@@ -36,6 +41,16 @@
 
     FoxCAPI.hideLoading = function () {
       $('.loading').css({'display':'none'});
+    };
+
+    FoxCAPI.getPrerequisite = function () {
+      var value = $("#local-data-app-prerequisite").val();
+      if(value != '') {
+        return JSON.parse(value);
+      }
+      else {
+        return null;
+      }
     };
 
     FoxCAPI.getAppToken = function () {
@@ -60,6 +75,23 @@
 
     FoxCAPI.getAppShop = function () {
       return $('#local-data-shop').val();
+    };
+
+    FoxCAPI.setLocalLocation = function (region, province, city, brgy) {
+      $('#local-data-user-location-region').val(region);
+      $('#local-data-user-location-province').val(province);
+      $('#local-data-user-location-city').val(city);
+      $('#local-data-user-location-brgy').val(brgy);
+    };
+
+    FoxCAPI.getLocalLocation = function () {
+      var args = {
+        'region': $('#local-data-user-location-region').val(),
+        'province': $('#local-data-user-location-province').val(),
+        'city': $('#local-data-user-location-city').val(),
+        'brgy': $('#local-data-user-location-brgy').val()
+      };
+      return args;
     };
 
     FoxCAPI.toggleVisibility = function (elem, passElem, init) {
@@ -147,6 +179,103 @@
         }
       });
     };
+
+    FoxCAPI.saveNearbySearch = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/saveNearbySearch?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('Save Nearby Search Response:', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getNearbyRecentSearches = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/recentNearbySearches?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('Get Recent Nearby Search Response:', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getNearbyShop = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food/getNearBy?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('Get Nearby Shops Response:', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.appFoxcityPrerequisite = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "common/appFoxcityPrerequisite";
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('Get Shop Prerequisite:', response);
+          $('#local-data-app-prerequisite').val(JSON.stringify(response));
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getUserLastLocation = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "user/getLastLocation/"+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('Get User Location:', response);
+          FoxCAPI.setLocalLocation(response.region, response.province, response.city, response.brgy);
+          callback(response)
+        }
+      });
+    };
+
+   
+
+    FoxCAPI.appRiderPrerequisite = function () {
+      
+    };
+
+    FoxCAPI.appShopPrerequisite = function () {
+      
+    };
+
+    FoxCAPI.appAdminPrerequisite = function () {
+      
+    };
+
+    FoxCAPI.appStaffPrerequisite = function () {
+      
+    };
+
+    //shop-food/getNearBy?region=07&province=0722&city=072209&brgy=072228003
 
     return FoxCAPI;
   }

@@ -46,6 +46,7 @@ else {
 <input id = "local-data-user-lastname" type="hidden" value = "<?php echo $last_name; ?>" name="local-data-user-lastname">
 <input id = "local-data-user-email" type="hidden" value = "<?php echo $email; ?>" name="local-data-user-email">
 
+<input id = "local-data-user-location-region" type="hidden" value = "{}" name="">
 <input id = "local-data-user-location-province" type="hidden" value = "{}" name="">
 <input id = "local-data-user-location-city" type="hidden" value = "{}" name="">
 <input id = "local-data-user-location-brgy" type="hidden" value = "{}" name="">
