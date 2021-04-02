@@ -257,7 +257,24 @@
       });
     };
 
-   
+    FoxCAPI.getFeaturedPlaces = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food/getFeaturedPlaces?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('Get Featured Places:', response);
+          callback(response)
+        }
+      });
+    };
+
+    FoxCAPI.getShopInfo = function () {
+      
+    };
 
     FoxCAPI.appRiderPrerequisite = function () {
       
