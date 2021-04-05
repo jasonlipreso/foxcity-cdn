@@ -8,7 +8,8 @@
     var debug   = true;
     var app_config = {
       'resource':'http://127.0.0.1:8000/api/',
-      'default_region':'07'
+      'default_region':'07',
+      'default_cover':'http://localhost/foxcity-fileserver/defaultPhotos/wallpaper-background-dark.png'
     };
 
     FoxCAPI.console = function (name, args) {
@@ -21,6 +22,10 @@
     FoxCAPI.defaultRegion = function () {
       return app_config.default_region;
     };
+
+    FoxCAPI.defaultCover = function() {
+      return app_config.default_cover;
+    }
 
     FoxCAPI.getAPIResource = function () {
       return app_config.resource;
@@ -46,7 +51,7 @@
     FoxCAPI.getPrerequisite = function () {
       var value = $("#local-data-app-prerequisite").val();
       if(value != '') {
-        return JSON.parse(value);
+        return JSON.parse(decodeURIComponent(value));
       }
       else {
         return null;
@@ -75,6 +80,15 @@
 
     FoxCAPI.getAppShop = function () {
       return $('#local-data-shop').val();
+    };
+
+    FoxCAPI.getLocalShopInfo = function () {
+      if($('#local-data-shop-info').val() == '') {
+        return null;
+      }
+      else {
+        return JSON.parse(decodeURIComponent($('#local-data-shop-info').val()));
+      }
     };
 
     FoxCAPI.setLocalLocation = function (region, province, city, brgy) {
@@ -116,6 +130,34 @@
       }
     };
 
+    FoxCAPI.quantityEditor = function (elem, action, callback) {
+
+      var min = parseInt($(elem).attr('min'));
+      var max = parseInt($(elem).attr('max'));
+      var val = parseInt($(elem).val());
+      var res = 0;
+
+      FoxCAPI.console('Edit Quantity:', {'min':min, 'max':max, 'val':val, 'action':action, 'elem':elem});
+
+      if(action == '+') {
+        if(val < max) {
+          res = val + 1;
+          $(elem).val(res);
+        }
+      }
+      else if(action == '-') {
+        if(val > min) {
+          res = val - 1;
+          $(elem).val(res);
+        }
+      }
+      else {
+        console.error('Action parameter is out of range in FoxCAPI.quantityEditor() function');
+      }
+
+      callback(res);
+    };
+
     FoxCAPI.makeTimer = function (element, duration, endCallback) {
       var timer = duration, minutes, seconds;
       var interval = setInterval(function () {
@@ -133,6 +175,27 @@
               clearInterval(interval);
           }
       }, 1000);
+    };
+
+    FoxCAPI.isGeolocationSupported  = function () {
+      if(!navigator.geolocation) {
+        alert('Geolocation is not supported on this browser');
+      }
+      else {
+        var a = navigator.geolocation.getCurrentPosition(FoxCAPI.getGeolocation);
+      }
+    };
+
+    FoxCAPI.getGeolocation = function (position) {
+
+      FoxCAPI.console('Get Geolocation:', position);
+
+      var accuracy    = position.coords.accuracy;
+      var altitude    = position.coords.altitude;
+      var latitude    = position.coords.latitude;
+      var longitude   = position.coords.longitude;
+      var timestamp   = position.coords.timestamp;
+
     };
 
     FoxCAPI.getLocationProvinceList = function (region, callback) {
@@ -235,7 +298,7 @@
         traditional: true,
         success: function (response) {
           FoxCAPI.console('Get Shop Prerequisite:', response);
-          $('#local-data-app-prerequisite').val(JSON.stringify(response));
+          $('#local-data-app-prerequisite').val(encodeURIComponent(JSON.stringify(response)));
           callback(response);
         }
       });
@@ -272,27 +335,55 @@
       });
     };
 
-    FoxCAPI.getShopInfo = function () {
-      
+    FoxCAPI.getShopInfo = function (args, callback) {
+      FoxCAPI.console('Get Shop Parameter:', args);
+      var url = FoxCAPI.getAPIResource() + "shop-food/getShopInfo?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('Get Shop Info:', response);
+          callback(response)
+        }
+      });
     };
 
-    FoxCAPI.appRiderPrerequisite = function () {
-      
+    FoxCAPI.getShopProductLocal = function (product_refid) {
+
+      var shop_info   = FoxCAPI.getLocalShopInfo();
+
+      if((shop_info == '')||(shop_info == null)||(shop_info == 'undefined')) {
+        return null;
+      }
+      else {
+        var products    = shop_info.products;
+
+        for(var i = 0; i < products.length; i++) {
+          var position = products[i].info.reference_id;
+          if(position == product_refid) {
+            return products[i];
+          }
+        }
+      }
     };
 
-    FoxCAPI.appShopPrerequisite = function () {
-      
-    };
-
-    FoxCAPI.appAdminPrerequisite = function () {
-      
-    };
-
-    FoxCAPI.appStaffPrerequisite = function () {
-      
-    };
-
-    //shop-food/getNearBy?region=07&province=0722&city=072209&brgy=072228003
+    FoxCAPI.getShopProductRequest = function (product_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food/getProducts_single/"+product_refid;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('Get Product Info:', response);
+          callback(response)
+        }
+      });
+    }
 
     return FoxCAPI;
   }
