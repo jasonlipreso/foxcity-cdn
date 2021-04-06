@@ -177,6 +177,32 @@
       }, 1000);
     };
 
+    FoxCAPI.makeReferenceID = function (key) {
+      //date('m').date('d').date('y').date('h').date('i').date('s');
+      var num_1 = Math.floor(Math.random() * 35) + 0;
+      var num_2 = Math.floor(Math.random() * 35) + 0;
+      var num_3 = Math.floor(Math.random() * 35) + 0;
+      var chars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      var csets = chars[num_1]+chars[num_2]+chars[num_3];
+
+      var date    = new Date();
+      var month   = date.getMonth() + 1;
+      var day     = date.getDate();
+      var year    = date.getFullYear();
+      var hour    = date.getHours();
+      var minute  = date.getMinutes();
+      var second  = date.getSeconds();
+
+      if(month <= 9) { month = '0'+month; }
+      if(day <= 9) { day = '0'+day; }
+      if(hour <= 9) { hour = '0'+hour; }
+      if(minute <= 9) { minute = '0'+minute; }
+      if(second <= 9) { second = '0'+second; }
+
+      return key + '-' + month + day + year + hour + minute + second + '-' + csets;
+
+    };
+
     FoxCAPI.isGeolocationSupported  = function () {
       if(!navigator.geolocation) {
         alert('Geolocation is not supported on this browser');
