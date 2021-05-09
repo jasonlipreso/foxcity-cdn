@@ -1,7 +1,8 @@
 <?php
 
+
 /* GLOBAL REPOSITORIES */
-$REPO_CDN                     = 'http://localhost/foxcity-cdn/';
+$REPO_CDN                     = '../foxcity-cdn/';
 $REPO_RESTAURANT_APP          = '../foxcity-mobile-restaurant/';
 $REPO_RIDER_APPP              = '../foxcity-rider/';
 $REPO_FOXCITY_APP             = '../foxcity-app/';
