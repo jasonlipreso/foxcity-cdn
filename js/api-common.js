@@ -4,19 +4,63 @@
 
   function FoxCity_CommonAPI() {
 
-    var FoxCAPI = {};
-    var debug   = true;
-    var app_config = {
-      'resource':'http://127.0.0.1:8000/api/',
-      'default_region':'07',
-      'default_cover':'http://localhost/foxcity-fileserver/defaultPhotos/wallpaper-background-dark.png'
-    };
+    var FoxCAPI     = {};
+    var debug       = true;
+    var app_config  = {};
+
+    if(window.location.hostname == 'localhost') {
+      app_config = {
+        'resource':'http://127.0.0.1:8000/api/',
+        'app_foxcity':'http://localhost/foxcity-app/',
+        'app_cdn':'http://localhost/foxcity-cdn/',
+        'app_rider':'http://localhost/foxcity-rider/',
+        'app_shop_food':'http://localhost/foxcity-mobile-restaurant/',
+        'default_region':'07',
+        'default_cover':'http://localhost/foxcity-fileserver/defaultPhotos/wallpaper-background-dark.png',
+        'loading_gif_16x16':'img/loading-16x16.gif',
+        'sms_brandname':'Foxcity PH'
+      };
+    }
+    else {
+      app_config = {
+        'resource':'https://www.foxcityph.com/api/',
+        'app_foxcity':'https://www.foxcityph.com/foxcity-app/',
+        'app_cdn':'https://www.foxcityph.com/foxcity-cdn/',
+        'app_rider':'https://www.foxcityph.com/foxcity-rider/',
+        'app_shop_food':'https://www.foxcityph.com/foxcity-mobile-restaurant/',
+        'default_region':'07',
+        'default_cover':'https://www.foxcityph.com/foxcity-fileserver/defaultPhotos/wallpaper-background-dark.png',
+        'loading_gif_16x16':'img/loading-16x16.gif',
+        'sms_brandname':'Foxcity PH'
+      };
+    }
 
     FoxCAPI.console = function (name, args) {
       if(debug) {
         console.log(name+' | '+ new Date());
         console.log(args);
       }
+    };
+
+    FoxCAPI.getConfig = function () {
+      return app_config;
+    };
+
+    FoxCAPI.SMSBrandName = function () {
+      return app_config.sms_brandname;
+    };
+
+    FoxCAPI.getLoadingGIF16X16 = function () {
+      return app_config.app_cdn+app_config.loading_gif_16x16;
+    };
+
+    FoxCAPI.appFoxcityDomain = function () {
+      return app_config.app_foxcity;
+    };
+
+    FoxCAPI.currencyFormat = function (amount) {
+      var formatter = new Intl.NumberFormat('en-US', {style:'currency',currency:'PHP'});
+      return formatter.format(amount)
     };
 
     FoxCAPI.defaultRegion = function () {
@@ -26,6 +70,11 @@
     FoxCAPI.defaultCover = function() {
       return app_config.default_cover;
     }
+
+    FoxCAPI.setDefaultCover = function (img) {
+      var cover = app_config.default_cover;
+      $(img).attr('src', cover);
+    };
 
     FoxCAPI.getAPIResource = function () {
       return app_config.resource;
@@ -37,7 +86,14 @@
     };
 
     FoxCAPI.isValidMobileNumber = function (mobile_number) {
-      return true;
+      var code = mobile_number.substring(0, 2);
+      var leng = mobile_number.length;
+      if((code != '63') && (leng != 12)) {
+        return false;
+      }
+      else {
+        return true;
+      }
     };
 
     FoxCAPI.showLoading = function () {
@@ -82,6 +138,10 @@
       return $('#local-data-shop').val();
     };
 
+    FoxCAPI.setAppShop = function (reference_id) {
+      $('#local-data-shop').val(reference_id);
+    };
+
     FoxCAPI.getLocalShopInfo = function () {
       if($('#local-data-shop-info').val() == '') {
         return null;
@@ -96,6 +156,15 @@
       $('#local-data-user-location-province').val(province);
       $('#local-data-user-location-city').val(city);
       $('#local-data-user-location-brgy').val(brgy);
+
+      var args = {
+        'region': region,
+        'province': province,
+        'city': city,
+        'brgy': brgy
+      };
+
+      object_user_location = args;
     };
 
     FoxCAPI.getLocalLocation = function () {
@@ -105,7 +174,26 @@
         'city': $('#local-data-user-location-city').val(),
         'brgy': $('#local-data-user-location-brgy').val()
       };
+
       return args;
+    };
+
+    FoxCAPI.toggleCollapseCont = function (elem, callback = null) {
+      var state = $(elem).css('display');
+      if((state == 'block') || (state == 'flex')) {
+        $(elem).slideUp(function () {
+          if(callback != null) {
+            callback({'action':'close'});
+          }
+        });
+      }
+      else {
+        $(elem).slideDown(function () {
+          if(callback != null) {
+            callback({'action':'open'});
+          }
+        });
+      }
     };
 
     FoxCAPI.toggleVisibility = function (elem, passElem, init) {
@@ -130,32 +218,56 @@
       }
     };
 
+    FoxCAPI.numCounterDisplay = function (min, max, elem, callback) {
+      var time      = [0,250,500,800,300,1200,100,2000];
+      var i         = 1;
+      if(max == 0) {
+        var time_index  = Math.floor(Math.random() * 7) + 1;
+        setTimeout(function () {
+          callback();
+        },time[time_index]);
+      }
+      else {
+        function looper() {
+          var time_index  = Math.floor(Math.random() * 7) + 1;
+          setTimeout(function () {
+            i++;
+            $(elem).text(i);
+            if(i == max) { callback(); }
+            if (i < max) { looper(); }
+          },time[time_index]);
+        }
+        looper();
+      }
+    };
+
     FoxCAPI.quantityEditor = function (elem, action, callback) {
 
       var min = parseInt($(elem).attr('min'));
       var max = parseInt($(elem).attr('max'));
       var val = parseInt($(elem).val());
-      var res = 0;
 
-      FoxCAPI.console('Edit Quantity:', {'min':min, 'max':max, 'val':val, 'action':action, 'elem':elem});
+      FoxCAPI.console('LOG-04092021113158-15P: OLD', {'min':min, 'max':max, 'val':val, 'action':action, 'elem':elem});
 
       if(action == '+') {
         if(val < max) {
-          res = val + 1;
-          $(elem).val(res);
+          val = val + 1;
+          $(elem).val(val);
         }
       }
       else if(action == '-') {
         if(val > min) {
-          res = val - 1;
-          $(elem).val(res);
+          val = val - 1;
+          $(elem).val(val);
         }
       }
       else {
         console.error('Action parameter is out of range in FoxCAPI.quantityEditor() function');
       }
 
-      callback(res);
+      FoxCAPI.console('LOG-04092021113158-15P: NEW', {'min':$(elem).attr('min'), 'max':$(elem).attr('max'), 'val':val, 'action':action, 'elem':elem});
+
+      callback(val);
     };
 
     FoxCAPI.makeTimer = function (element, duration, endCallback) {
@@ -177,8 +289,66 @@
       }, 1000);
     };
 
+    FoxCAPI.ConvertToNumberComma = function (number) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
+    FoxCAPI.convertDateTime = function (datetime) {
+
+      var date  = new Date(datetime);
+      var time    = date.toLocaleTimeString();
+      
+      var month   = date.getMonth();
+      var day     = date.getDate();
+      var year    = date.getFullYear();
+
+      var month_word = ["Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."];
+      return month_word[month]+" "+day+" "+year+" "+time
+    };
+
+    FoxCAPI.timeSince = function (date) {
+      var seconds = Math.floor((new Date() - date) / 1000);
+      var interval = seconds / 31536000;
+
+      if (interval > 1) {
+        return Math.floor(interval) + " year";
+      }
+
+      interval = seconds / 2592000;
+      if (interval > 1) {
+        return Math.floor(interval) + " month";
+      }
+      interval = seconds / 86400;
+      if (interval > 1) {
+        return Math.floor(interval) + " day";
+      }
+      interval = seconds / 3600;
+      if (interval > 1) {
+        var hours     = Math.floor(seconds / 3600);
+        return hours +' hour';
+      }
+      interval = seconds / 60;
+      if (interval > 1) {
+        var minutes = Math.floor(interval);
+        var seconds = Math.floor(seconds);
+        var minus_m = minutes * 60;
+        return minutes+' min. and '+(Math.floor(seconds) - minus_m) +' sec.';
+      }
+      return Math.floor(seconds) + " seconds";
+    };
+
+    FoxCAPI.scrollToElement01 = function (element) {
+      /*
+      var scrollDiv = document.getElementById(elemID).offsetTop;
+      window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+      */
+      document.querySelector(element).scrollIntoView({
+        behavior: 'smooth'
+      });
+    };
+
     FoxCAPI.makeReferenceID = function (key) {
-      //date('m').date('d').date('y').date('h').date('i').date('s');
+
       var num_1 = Math.floor(Math.random() * 35) + 0;
       var num_2 = Math.floor(Math.random() * 35) + 0;
       var num_3 = Math.floor(Math.random() * 35) + 0;
@@ -208,20 +378,55 @@
         alert('Geolocation is not supported on this browser');
       }
       else {
-        var a = navigator.geolocation.getCurrentPosition(FoxCAPI.getGeolocation);
+        return navigator.geolocation.getCurrentPosition(FoxCAPI.getGeolocation);
       }
     };
 
     FoxCAPI.getGeolocation = function (position) {
+      return position;
+    };
 
-      FoxCAPI.console('Get Geolocation:', position);
+    FoxCAPI.toggleBttn01 = function (elemID, callback) {
+      var state = $(elemID).attr('data-state');
+      if((state == 'true') || (state == 1) ||(state == true)) {
+        $(elemID+' .thumb').animate({'margin-left':'0px'},'fast', function () {
+          $(this).removeClass('on').addClass('off');
+          $(elemID).attr('data-state','false');
+          callback(0);
+        });
+      }
+      else if((state == 'false') || (state == 0) || (state == false)) {
+        $(elemID+' .thumb').animate({'margin-left':'30px'},'fast', function () {
+          $(this).removeClass('off').addClass('on');
+          $(elemID).attr('data-state','true');
+          callback(1);
+        });
+      }
+      else {
+        console.error("Unknown State:"+state);
+      }
+    };
 
-      var accuracy    = position.coords.accuracy;
-      var altitude    = position.coords.altitude;
-      var latitude    = position.coords.latitude;
-      var longitude   = position.coords.longitude;
-      var timestamp   = position.coords.timestamp;
-
+    FoxCAPI.setToggleBttn01 = function (elemID, state = false, callback) {
+      if((state == 'false') || (state == false) || (state == 0)) {
+        $(elemID+' .thumb').animate({'margin-left':'0px'},'fast', function () {
+          $(this).removeClass('on').addClass('off');
+          $(elemID).attr('data-state','false');
+          if((callback != null) || (callback != '')) {
+            callback(state);
+          }
+        });
+      }
+      else if((state == 'true') || (state == true) || (state == 1)) {
+        $(elemID+' .thumb').animate({'margin-left':'30px'},'fast', function () {
+          $(this).removeClass('off').addClass('on');
+          $(elemID).attr('data-state','true');
+          if((callback != null) || (callback != '')) {
+            callback(state);
+          }
+        });
+      }
+      else {}
     };
 
     FoxCAPI.getLocationProvinceList = function (region, callback) {
@@ -233,10 +438,30 @@
         contentType: 'application/json; charset=utf-8',
         traditional: true,
         success: function (response) {
-          FoxCAPI.console('Province List:', response);
+          FoxCAPI.console('LOG-04092021113214-VYM', response);
           callback(response);
         }
       });
+    };
+
+    FoxCAPI.toggleCont01 = function (buttonID, containerID) {
+      var block = $(containerID).css('display');
+      if(block == 'block') {
+        $(containerID).slideUp();
+        $(buttonID).css({'transform':'rotate(0deg)'});
+      }
+      else {
+        $(containerID).slideDown();
+        $(buttonID).css({'transform':'rotate(90deg)'});
+      }
+    };
+
+    FoxCAPI.isFunction = function (name) {
+      return name && {}.toString.call(name) === '[object Function]';
+    };
+
+    FoxCAPI.modalRating = function () {
+
     };
 
     FoxCAPI.getLocationCityList = function (province, callback) {
@@ -248,7 +473,7 @@
         contentType: 'application/json; charset=utf-8',
         traditional: true,
         success: function (response) {
-          FoxCAPI.console('City List:', response);
+          FoxCAPI.console('LOG-04092021113226-WA3', response);
           callback(response);
         }
       });
@@ -263,7 +488,7 @@
         contentType: 'application/json; charset=utf-8',
         traditional: true,
         success: function (response) {
-          FoxCAPI.console('Barangy List:', response);
+          FoxCAPI.console('LOG-04092021113233-A5L', response);
           callback(response);
         }
       });
@@ -278,7 +503,7 @@
         contentType: 'application/json; charset=utf-8',
         traditional: true,
         success: function (response) {
-          FoxCAPI.console('Save Nearby Search Response:', response);
+          FoxCAPI.console('LOG-04092021113243-EXW', response);
           callback(response);
         }
       });
@@ -293,7 +518,7 @@
         contentType: 'application/json; charset=utf-8',
         traditional: true,
         success: function (response) {
-          FoxCAPI.console('Get Recent Nearby Search Response:', response);
+          FoxCAPI.console('LOG-04092021113255-OLK', response);
           callback(response);
         }
       });
@@ -308,7 +533,7 @@
         contentType: 'application/json; charset=utf-8',
         traditional: true,
         success: function (response) {
-          FoxCAPI.console('Get Nearby Shops Response:', response);
+          FoxCAPI.console('LOG-04092021113306-O8X', response);
           callback(response);
         }
       });
@@ -323,7 +548,7 @@
         contentType: 'application/json; charset=utf-8',
         traditional: true,
         success: function (response) {
-          FoxCAPI.console('Get Shop Prerequisite:', response);
+          FoxCAPI.console('LOG-04092021113327-4NN', response);
           $('#local-data-app-prerequisite').val(encodeURIComponent(JSON.stringify(response)));
           callback(response);
         }
@@ -339,7 +564,7 @@
         contentType: 'application/json; charset=utf-8',
         traditional: true,
         success: function (response) {
-          FoxCAPI.console('Get User Location:', response);
+          FoxCAPI.console('LOG-04092021113339-V9Z', response);
           FoxCAPI.setLocalLocation(response.region, response.province, response.city, response.brgy);
           callback(response)
         }
@@ -355,14 +580,14 @@
         contentType: 'application/json; charset=utf-8',
         traditional: true,
         success: function (response) {
-          FoxCAPI.console('Get Featured Places:', response);
+          FoxCAPI.console('LOG-04092021113349-F4K', response);
           callback(response)
         }
       });
     };
 
     FoxCAPI.getShopInfo = function (args, callback) {
-      FoxCAPI.console('Get Shop Parameter:', args);
+      FoxCAPI.console('LOG-04092021113406-LDH', args);
       var url = FoxCAPI.getAPIResource() + "shop-food/getShopInfo?"+jQuery.param(args);
       $.ajax({
         url: url,
@@ -371,7 +596,7 @@
         contentType: 'application/json; charset=utf-8',
         traditional: true,
         success: function (response) {
-          FoxCAPI.console('Get Shop Info:', response);
+          FoxCAPI.console('LOG-04092021113400-M94', response);
           callback(response)
         }
       });
@@ -396,6 +621,73 @@
       }
     };
 
+    FoxCAPI.setMaxDatePicker = function (elem, days) {
+      var today = new Date();
+      var dd = today.getDate() + days;
+      var mm = today.getMonth()+1; //January is 0!
+      var yyyy = today.getFullYear();
+      if(dd<10){ dd='0'+dd } 
+      if(mm<10){ mm='0'+mm } 
+      today = yyyy+'-'+mm+'-'+dd;
+      $(elem).attr("max",today);
+    };
+
+    FoxCAPI.setMinDatePicker = function (elem, days) {
+      var today = new Date();
+      var dd = today.getDate() - days;
+      var mm = today.getMonth()+1; //January is 0!
+      var yyyy = today.getFullYear();
+      if(dd<10){ dd='0'+dd } 
+      if(mm<10){ mm='0'+mm } 
+      today = yyyy+'-'+mm+'-'+dd;
+      $(elem).attr("min",today);
+    };
+
+    FoxCAPI.openExtendView01 = function (url, onClose, callback = null) {
+      $(".app-extend-view-01").css({'display':'block'});
+      $(".app-extend-view-01").animate({'opacity':1},'fast', function () {
+        $(".app-extend-view-01 .body").animate({'margin-top':'0px','opacity':1},'fast', function () {
+          FoxCAPI.showLoading();
+          $(".app-extend-view-01 .body .container").load(url, function () {
+            FoxCAPI.hideLoading();
+            if((callback != '') || (callback != null) || (typeof(callback) != 'undefined')) {
+              callback();
+            }
+
+            if((onClose != '') || (onClose != null) || (typeof(onClose) != 'undefined')) {
+              $(".app-extend-view-01 .header").attr({"onclick":"FoxCAPI.closeExtendView01("+onClose+")"});
+            }
+          });
+        });
+      });
+    };
+
+    FoxCAPI.closeExtendView01 = function (callback = null) {
+      $(".app-extend-view-01 .body").animate({'margin-top':'500px','opacity':0},'fast', function () {
+        $(".app-extend-view-01").animate({'opacity':0},'fast', function () {
+          $(".app-extend-view-01").css({'display':'none'});
+          if((callback == '') || (callback == null) || (typeof(callback) == 'undefined')) {
+            /* No nothing */
+            $(".app-extend-view-01 .body .container").html('');
+          }
+          else {
+            callback();
+            $(".app-extend-view-01 .body .container").html('');
+          }
+        });
+      });
+    };  
+
+    FoxCAPI.sendMyHeartBeat = function (callback) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          FoxCAPI.makeHeartbeat(position.coords.latitude, position.coords.longitude, FoxCAPI.getAppUserRefID(), function () {
+            callback();
+          });
+        });
+      }
+    };
+
     FoxCAPI.getShopProductRequest = function (product_refid, callback) {
       var url = FoxCAPI.getAPIResource() + "shop-food/getProducts_single/"+product_refid;
       $.ajax({
@@ -405,12 +697,629 @@
         contentType: 'application/json; charset=utf-8',
         traditional: true,
         success: function (response) {
-          FoxCAPI.console('Get Product Info:', response);
+          FoxCAPI.console('LOG-04092021113412-CRO', response);
           callback(response)
         }
       });
     }
 
+    FoxCAPI.addFoodItemCart = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "cart/addProduct?data="+JSON.stringify(args);
+      $.ajax({
+        url: url,
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04092021113422-ISD', response);
+          FoxCAPI.console('LOG-04092021113430-MBD', url);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getCartReferenceID = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "cart/getCartRefID?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.countCartShop = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "cart/countCartShop?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04092021113133-VXY', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getCartItemByShop = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "cart/getItemInCartByUserAndShop?token="+FoxCAPI.getAppToken()+"&shop_refid="+shop_refid+"&user_refid="+FoxCAPI.getAppUserRefID()+"&status=1";
+      FoxCAPI.console('LOG-04112021114933-119', url);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04102021013416-BLE', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.countItemInCart = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "cart/countItemInCart?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04102021013427-JC0', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getShippingFee = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "shipping/getShippingFee?token="+FoxCAPI.getAppToken()+"&shop_refid="+args.shop_refid+"&user_refid="+FoxCAPI.getAppUserRefID()+"&address_refid="+args.address_refid;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04112021070947-2DN', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.createDeliveryAddress = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "user/createDeliveryAddress?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04132021060058-HSD', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getDeliveryAddress = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "user/getDeliveryAddress?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04132021060103-3U4', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.isFirstOrder = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "cart/isFirstOrder?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04142021085034-PIZ', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.placeOrder = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "cart/placeOrder?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04142021085025-7LH', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getAllDeliveryAddress = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "user/getAllDeliveryAddress?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04142021085020-PLT', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.switchDeliveryAddress = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "user/switchDeliveryAddress?"+jQuery.param(args)
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04242021034517-3NB', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getRecentlyOrdered = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "common/getRecentlyOrdered?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04242021034510-T8X', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.createShopBookMark = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "user/createShopBookMark?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&shop_refid="+shop_refid;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04242021034501-G6N', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.isBookShopMarked = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "user/isBookShopMarked?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&shop_refid="+shop_refid;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04242021034455-X2Q', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.appShopFoodPrerequisite = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "common/appShopFoodPrerequisite?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04242021034449-P15', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.newOrders = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-orders/newOrders?token="+FoxCAPI.getAppToken()+"&shop_refid="+FoxCAPI.getAppShop();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04242021034439-BN3', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.logShopAccess = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-users/logShopAccess?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&shop_refid="+shop_refid;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04242021034433-9V5', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getOrderItem = function (order_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-orders/getOrderItem?token="+FoxCAPI.getAppToken()+"&reference_id="+order_refid;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04242021034422-8WH', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.searchFood = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "search/food?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04242021034415-MR8', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.searchShop = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "search/shop?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04242021034404-GGR', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.makeUserSetting = function (name, value, callback) {
+      var url = FoxCAPI.getAPIResource() + "user/makeSetting?user_refid="+FoxCAPI.getAppUserRefID()+"&name="+name+"&value="+value;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getALLSetting = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "user/getALLSetting/"+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.editor = function (args, callback) {
+      /*
+        var args = {
+          "token":FoxCAPI.getAppToken(),
+          "user_refid":FoxCAPI.getAppUserRefID(),
+          "tbl":"",
+          "wclm":"[where column name]",
+          "wval":"[where column value]",
+          "uclm":"[to update column name]",
+          "uval":"[to update column new value]"
+        };
+      */
+      var url = FoxCAPI.getAPIResource() + "common/editor?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getAllShopProducts = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food/getAllShopProducts?token="+FoxCAPI.getAppToken()+"&shop_refid="+FoxCAPI.getAppShop();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.makeSeen = function (data_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/seen?token="+FoxCAPI.getAppToken()+"&data_refid="+data_refid+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.updatePlaceOrderStatus = function (reference_id, status, callback) {
+      var url = FoxCAPI.getAPIResource() + "cart/updatePlaceOrderStatus?token="+FoxCAPI.getAppToken()+"&reference_id="+reference_id+"&status="+status;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.makeHeartbeat = function (latitude, longitude, user_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/makeHeartbeat?token="+FoxCAPI.getAppToken()+"&user_refid="+user_refid+"&latitude="+latitude+"&longitude="+longitude;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.appRiderPrerequisite = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "common/appRiderPrerequisite?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getHotSale = function (city_code, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/getHotSale?city_code="+city_code;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.sentSMS = function (number, brandname, message, callback) {
+      var url = FoxCAPI.getAPIResource() + "vonage/sms/send?token="+FoxCAPI.getAppToken()+"&number="+number+"&brandname="+brandname+"&message="+message;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.sendEmail = function (subject, inquiry, email, name, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/sendEmail?token="+FoxCAPI.getAppToken()+"&subject="+subject+"&inquiry="+inquiry+"&email="+email+"&name="+name;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getNearByShop = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food/getNearByShop?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getColumn = function (args, callback) {
+      /*
+      var args = {
+        'token':'',
+        'table':'',
+        'gclm':'',
+        'wclm':'',
+        'wval':''
+      };
+      */
+
+      var url = FoxCAPI.getAPIResource() + "common/getColumn?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.changePassword = function (args, callback) {
+      /*
+      var args = {
+        'token':'',
+        'user_refid':'',
+        'op':'',
+        'np':''
+      }
+      */
+
+      var url = FoxCAPI.getAPIResource() + "user/changePassword?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('getHotSale url', url);
+          FoxCAPI.console('getHotSale', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.sendOTP = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "user/sendOTP?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.orderView = function (type, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-orders/orderView?type="+type+"&token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.orderCancel = function (order_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-orders/cancel?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&order_refid="+order_refid;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getRatings = function (scope, target_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "rating/rating?token="+FoxCAPI.getAppToken()+"&target_refid="+target_refid+"&scope="+scope+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+    
     return FoxCAPI;
   }
 

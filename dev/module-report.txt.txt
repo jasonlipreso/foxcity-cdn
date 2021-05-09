@@ -1,0 +1,9 @@
+1. Excel: Shop purchase report
+2. PDF: Order detail report (Per order)
+3. PDF: Monthly Invoice
+4. Shop statistics
+    - Visits per day
+    - Visit per month
+    - Purchase rate
+    - Likes
+    - Reviews

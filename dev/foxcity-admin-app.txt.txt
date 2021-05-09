@@ -1,0 +1,3 @@
+
+Priority Functions
+1. Make shop featured (Toggle button and set featured in 15 days or other)

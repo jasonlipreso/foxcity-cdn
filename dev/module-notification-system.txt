@@ -1,0 +1,32 @@
+
+=======================================================================
+PRIORITY FEATURES
+=======================================================================
+1. Generate Notification Per User
+2. Seen notification
+
+
+
+FUNCTIONS
+- Foxcity App
+-----------------------------------------------------------------------
+    - If has new message
+    - If shop confirmed the order
+    - If shop denied the order
+    - If rider is ongoing
+    - If rider is at the place
+    - If has order changed confirmation request
+
+- Foxcity Shop Food App
+-----------------------------------------------------------------------
+    - If has new message
+    - If has new order
+    - If has customer canceled the order
+
+- Foxcity Rider App
+-----------------------------------------------------------------------
+    - If has new message
+    - If has new assignment
+    - If has assignment offer
+
+

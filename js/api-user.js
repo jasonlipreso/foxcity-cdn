@@ -19,10 +19,13 @@
         alert('Please provide valid email');
       }
       else if(!FoxCAPI.isValidMobileNumber(args.mobile)) {
-        alert('Please provide valid mobile number');
+        alert('Please provide valid mobile number, start with 63...');
+      }
+      else if(args.password == '') {
+        alert('Please provide password');
       }
       else if(args.password != args.password_confirm) {
-        alert("Password doen\'t match ");
+        alert("Password doen\'t match");
       }
       else {
         var url = FoxCAPI.getAPIResource() + "user/register?"+jQuery.param(args);
@@ -56,6 +59,21 @@
     FoxUser.login = function (args, callback) {
       FoxCAPI.console('Login Parameter: ', args);
       var url = FoxCAPI.getAPIResource() + "user/logIn?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('Login Response: ', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxUser.getUser = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "user/getUser?"+jQuery.param(args);
       $.ajax({
         url: url,
         type: 'get',

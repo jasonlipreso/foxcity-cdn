@@ -1,5 +1,10 @@
 .mtl-auto { margin-left: auto; margin-right: auto; }
 
+.m-5 { margin: 5px; }
+.m-10 { margin: 10px; }
+.m-15 { margin: 15px; }
+.m-20 { margin: 20px; }
+
 .mt-5 { margin-top: 5px; }
 .mt-10 { margin-top: 10px; }
 .mt-15 { margin-top: 15px; }

@@ -1,0 +1,10 @@
+
+Email: info@foxcityph.com
+Password: I^8ukotve33Q
+
+Incoming (IMAP access) server..........Hostname:imap.hostinger.ph ......Port:993
+Outgoing Mail (SMTP) Server............Hostname:smtp.hostinger.ph ......Port:587
+DNS MX record..........................5 mx1.hostinger.ph
+                                       10 mx2.hostinger.ph
+Webmail address........................https://webmail.hostinger.ph
+Incoming (POP3 access) server..........pop.hostinger.ph .................Port:995

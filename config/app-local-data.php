@@ -70,6 +70,13 @@ else {
   $city_name = "";
 }
 
+if(isset($_GET['shop'])) {
+  $shop =  $_GET['shop'];
+}
+else {
+  $shop = "";
+}
+
 ?>
 
 <!-- JSON Format prerequisite data -->
@@ -97,7 +104,7 @@ Active shop Reference ID
   Rider App: --
   Account Shop: Reference ID of the currently loggined shop
 -->
-<input id = "local-data-shop" type="hidden" value = "" name="local-data-shop">
+<input id = "local-data-shop" type="hidden" value = "<?php echo $shop; ?>" name="local-data-shop">
 <input id = "local-data-shop-info" type="hidden" value = "" name="local-data-shop-info">
 
 <!-- OTP Number as Verification Code -->

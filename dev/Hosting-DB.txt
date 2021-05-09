@@ -1,0 +1,6 @@
+
+
+MySQL database name: u200905711_foxcityph
+MySQL username: u200905711_foxcityph
+Password: 8&]RLm/V
+Remote Access: https://auth-db354.hostinger.ph/?_ga=2.128574156.1365034087.1620365649-656100963.1607431398

@@ -1,6 +1,8 @@
 .pd-3 { padding: 3px; }
 .pd-5 { padding: 5px; }
 .pd-10 { padding: 10px; }
+.pd-15 { padding: 15px; }
+.pd-20 { padding: 20px; }
 
 .pdt-5 { padding-top: 5px; }
 .pdt-10 { padding-top: 10px; }
@@ -15,6 +17,10 @@
 .pdb-20 { padding-bottom: 20px; }
 .pdb-25 { padding-bottom: 25px; }
 .pdb-30 { padding-bottom: 30px; }
+.pdb-35 { padding-bottom: 35px; }
+.pdb-40 { padding-bottom: 40px; }
+.pdb-45 { padding-bottom: 45px; }
+.pdb-50 { padding-bottom: 50px; }
 
 .pdl-5 { padding-left: 5px; }
 .pdl-10 { padding-left: 10px; }

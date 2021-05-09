@@ -6,6 +6,8 @@ $REPO_RESTAURANT_APP          = '../foxcity-mobile-restaurant/';
 $REPO_RIDER_APPP              = '../foxcity-rider/';
 $REPO_FOXCITY_APP             = '../foxcity-app/';
 
+$FAVICON                      = $REPO_CDN.'img/favicon.png';
+
 /* META DATA REQUIREMENTS:CSS & JS */
 $LINK_CSS_RESET               = $REPO_CDN. 'css/reset.css';
 $LINK_CSS_BUTTON              = $REPO_CDN. 'css/button.css';
@@ -29,6 +31,7 @@ $LINK_JS_USER_API             = $REPO_CDN. 'js/api-user.js';
 $LINK_JS_SHOP_API             = $REPO_CDN. 'js/api-shop.js';
 $LINK_JS_AUTHENTICATE_API     = $REPO_CDN. 'js/api-authentication.js';
 $LINK_JS_TEXT_API             = $REPO_CDN. 'js/api-txt.js';
+$LINK_JS_OTP_FORM             = $REPO_CDN. 'js/otp-form.js';
 
 /* LIBRARY COLLECTIONS */
 $LINK_SLICK_JS                = $REPO_CDN. 'library/slick/slick.js';
@@ -65,5 +68,6 @@ $IMG_ICON_SEARCH              = $REPO_CDN. 'img/search_black.svg';
 $IMG_ICON_STAR_WHITE          = $REPO_CDN. 'img/star_white.svg';
 $IMG_ICON_BOOKMARK_WHITE      = $REPO_CDN. 'img/bookmark_white.svg';
 $IMG_ICON_ARROW_DROPDOWN      = $REPO_CDN. 'img/arrow_drop_down-orange.svg';
+$IMG_ICON_LOADING_GIF         = $REPO_CDN. 'img/loading-16x16.gif';
 
 ?>

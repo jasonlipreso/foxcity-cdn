@@ -5,6 +5,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="icon" type="image/png" href="<?php echo $FAVICON; ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_RESET; ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_MARGIN; ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $LINK_CSS_PADDING; ?>">
@@ -23,4 +24,5 @@
 <script type="text/javascript" src = "<?php echo $LINK_JS_SHOP_API; ?>"></script>
 <script type="text/javascript" src = "<?php echo $LINK_JS_AUTHENTICATE_API; ?>"></script>
 <script type="text/javascript" src = "<?php echo $LINK_JS_TEXT_API; ?>"></script>
+<script type="text/javascript" src = "<?php echo $LINK_JS_OTP_FORM; ?>"></script>
 

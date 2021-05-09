@@ -1,0 +1,6 @@
+=======================================================================
+PRIORITY FEATURES
+=======================================================================
+1. Send Text message
+2. Receive Text message
+3. Edit Text message - standalone editing
