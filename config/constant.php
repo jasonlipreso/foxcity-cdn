@@ -2,7 +2,14 @@
 
 
 /* GLOBAL REPOSITORIES */
-$REPO_CDN                     = '../foxcity-cdn/';
+
+if($_SERVER['HTTP_HOST'] == 'localhost') {
+  $REPO_CDN                     = 'http://localhost/foxcity-cdn/';
+}
+else {
+  $REPO_CDN                     = 'https://www.foxcityph.com/foxcity-cdn/';
+}
+
 $REPO_RESTAURANT_APP          = '../foxcity-mobile-restaurant/';
 $REPO_RIDER_APPP              = '../foxcity-rider/';
 $REPO_FOXCITY_APP             = '../foxcity-app/';

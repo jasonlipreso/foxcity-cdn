@@ -11,6 +11,7 @@
     if(window.location.hostname == 'localhost') {
       app_config = {
         'resource':'http://127.0.0.1:8000/api/',
+        'file_server':'http://localhost/foxcity-fileserver/',
         'app_foxcity':'http://localhost/foxcity-app/',
         'app_cdn':'http://localhost/foxcity-cdn/',
         'app_rider':'http://localhost/foxcity-rider/',
@@ -24,6 +25,7 @@
     else {
       app_config = {
         'resource':'https://www.foxcityph.com/api/',
+        'file_server':'https://www.foxcityph.com/foxcity-fileserver/',
         'app_foxcity':'https://www.foxcityph.com/foxcity-app/',
         'app_cdn':'https://www.foxcityph.com/foxcity-cdn/',
         'app_rider':'https://www.foxcityph.com/foxcity-rider/',
@@ -1315,6 +1317,52 @@
         traditional: true,
         success: function (response) {
           FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.searchFoodAndShop = function (keyword, city, callback) {
+      var url = FoxCAPI.getAPIResource() + "search/search/?keyword="+keyword+"&user_refid="+FoxCAPI.getAppUserRefID()+"&city="+city;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getbookmarked = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "user/getbookmarked?user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getCategoryItems = function (category, page, callback) {
+      var url = FoxCAPI.getAPIResource() + "category/getCategoryItems?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&city_code="+object_user_location.city+"&category="+category+"&page="+page;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          console.log(url);
           callback(response);
         }
       });
