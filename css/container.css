@@ -72,6 +72,15 @@
 .app-extend-view-01 .body {margin-top: 500px;width: 100%;height: calc(100% - 60px);border-top-right-radius: 20px;border-top-left-radius: 20px;opacity: 0;}
 .app-extend-view-01 .body .container {padding: 15px;overflow: auto;max-height: 100%;}
 
+.app-searchbox {display: flex;width: 100%;height: 50px;}
+.app-searchbox .side {width: 50px;height: 50px;}
+.app-searchbox .center {width: calc(100% - 100px);height: 50px;border-top-right-radius: 8px;border-bottom-right-radius: 8px;overflow: hidden;background-color: white;}
+.app-searchbox .search-icon-base {background-color: white;border-top-left-radius: 8px;border-bottom-left-radius: 8px;}
+.app-searchbox .center input[type='text']{outline: none;border: none;box-sizing: border-box;width: 100%;height: 50px;}
+.app-searchbox .app-searchbox-icon {width: 50px;height: 50px;object-fit: cover;box-sizing: border-box;}
+.app-searchbox .search-icon {opacity: 1;padding: 5px;}
+.app-searchbox .loading-icon {padding: 10px;opacity: 0;}
+
 .app-empty-icon-01 {display: block;margin: 40px auto 0px auto;width: 60px;height: auto;}
 
 .dh-40px { height: 40px; }

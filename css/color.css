@@ -11,6 +11,7 @@
 .bg-transparent { background-color: transparent !important; }
 .bg-info-lightblue { background-color: #c8e8f7 !important; }
 .bg-red { background-color: red !important; }
+.bg-blocker { background-color: #0606063b; }
 .cl-black { color: #666273 !important; }
 .cl-gray { color: #5f5f5f !important; }
 .cl-light-gray { color: #8d8c8c !important; }

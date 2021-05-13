@@ -11,6 +11,7 @@
 <script type="text/javascript">
 
   /*
+  CATEGORY: CUSTOMER_FOOD | ORDER_FOOD
   ===========================================
   TO OPEN RATING MODAL
   ===========================================
@@ -68,39 +69,39 @@
           });
         }
         else {
+          var args = {
+            'category': object_rating_modal.category,
+            'target_refid': object_rating_modal.target_refid,
+            'user_refid':FoxCAPI.getAppUserRefID(),
+            'feedback':$("#app-rating-modal #feedback").val(),
+            'rate':object_rating_modal.rate,
+            'token': FoxCAPI.getAppToken()
+          };
+          var url = FoxCAPI.getAPIResource() + "rating/rate?"+jQuery.param(args);
+          $.ajax({
+            url: url,
+            type: 'get',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            traditional: true,
+            success: function (response) {
+              FoxCAPI.console('', response);
+              if(response.success) {
+                if(object_rating_modal.category == 'ORDER_FOOD') {
+                  $("#ghvfdre3").click();
+                }
+                else if(object_rating_modal.category == 'CUSTOMER_FOOD') {
+                  runAfterRate(response);
+                }
+                else {
 
-        }
+                }
 
-        var args = {
-          'category': object_rating_modal.category,
-          'target_refid': object_rating_modal.target_refid,
-          'user_refid':FoxCAPI.getAppUserRefID(),
-          'feedback':$("#app-rating-modal #feedback").val(),
-          'rate':object_rating_modal.rate,
-          'token': FoxCAPI.getAppToken()
-        };
-
-        var url = FoxCAPI.getAPIResource() + "rating/rate?"+jQuery.param(args);
-        $.ajax({
-          url: url,
-          type: 'get',
-          dataType: 'json',
-          contentType: 'application/json; charset=utf-8',
-          traditional: true,
-          success: function (response) {
-            FoxCAPI.console('', response);
-            if(response.success) {
-              if(object_rating_modal.category == 'ORDER_FOOD') {
-                $("#ghvfdre3").click();
+                FCRatingModal.close();
               }
-              else {
-
-              }
-
-              FCRatingModal.close();
             }
-          }
-        });
+          });
+        }
       };
 
       FCRatingModal.ratingExist = function (args, callback) {

@@ -308,6 +308,23 @@
       return month_word[month]+" "+day+" "+year+" "+time
     };
 
+    FoxCAPI.getDate = function () {
+      //2021-05-14
+      var date    = new Date();
+      var month   = date.getMonth() + 1;
+      var day     = date.getDate();
+      var year    = date.getFullYear();
+
+      if(month <= 9) {month = "0"+month;}
+      if(day <= 9) {day = "0"+day;}
+
+      return year+'-'+month+'-'+day;
+    };
+
+    FoxCAPI.getTime = function () {
+
+    };
+
     FoxCAPI.timeSince = function (date) {
       var seconds = Math.floor((new Date() - date) / 1000);
       var interval = seconds / 31536000;
@@ -961,6 +978,36 @@
       });
     };
 
+    FoxCAPI.ongoingOrders = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-orders/ongoingOrders?token="+FoxCAPI.getAppToken()+"&shop_refid="+FoxCAPI.getAppShop();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('LOG-04242021034439-BN3', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.completedOrders = function (date, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-orders/completedOrders?token="+FoxCAPI.getAppToken()+"&shop_refid="+FoxCAPI.getAppShop()+"&date="+date;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
     FoxCAPI.logShopAccess = function (shop_refid, callback) {
       var url = FoxCAPI.getAPIResource() + "shop-food-users/logShopAccess?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&shop_refid="+shop_refid;
       $.ajax({
@@ -1052,8 +1099,10 @@
     };
 
     FoxCAPI.editor = function (args, callback) {
-      /*
-        var args = {
+      /*******************************************************
+      Usage Format
+      ********************************************************
+      FoxCAPI.editor({
           "token":FoxCAPI.getAppToken(),
           "user_refid":FoxCAPI.getAppUserRefID(),
           "tbl":"",
@@ -1061,7 +1110,10 @@
           "wval":"[where column value]",
           "uclm":"[to update column name]",
           "uval":"[to update column new value]"
-        };
+        }, function () {
+          Your code here...
+      });
+    
       */
       var url = FoxCAPI.getAPIResource() + "common/editor?"+jQuery.param(args);
       $.ajax({
@@ -1077,8 +1129,8 @@
       });
     };
 
-    FoxCAPI.getAllShopProducts = function (callback) {
-      var url = FoxCAPI.getAPIResource() + "shop-food/getAllShopProducts?token="+FoxCAPI.getAppToken()+"&shop_refid="+FoxCAPI.getAppShop();
+    FoxCAPI.getAllShopProducts = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food/getAllShopProducts?token="+FoxCAPI.getAppToken()+"&shop_refid="+shop_refid;
       $.ajax({
         url: url,
         type: 'get',
@@ -1214,14 +1266,17 @@
 
     FoxCAPI.getColumn = function (args, callback) {
       /*
-      var args = {
+      FoxCAPI.getColumn({
         'token':'',
         'table':'',
         'gclm':'',
         'wclm':'',
         'wval':''
-      };
+      }, function (response) {
+
+      });
       */
+      
 
       var url = FoxCAPI.getAPIResource() + "common/getColumn?"+jQuery.param(args);
       $.ajax({
@@ -1362,11 +1417,27 @@
         traditional: true,
         success: function (response) {
           FoxCAPI.console('', response);
-          console.log(url);
           callback(response);
         }
       });
     };
+
+    FoxCAPI.orderActivity = function (order_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-orders/activity?token="+FoxCAPI.getAppToken()+"&order_refid="+order_refid+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    
     
     return FoxCAPI;
   }
