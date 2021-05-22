@@ -19,10 +19,13 @@
         alert('Please provide valid email');
       }
       else if(!FoxCAPI.isValidMobileNumber(args.mobile)) {
-        alert('Please provide valid mobile number, start with 63...');
+        alert('Please provide valid mobile number, start with 63');
       }
       else if(args.password == '') {
         alert('Please provide password');
+      }
+      else if(!FoxCAPI.isValidPassword(args.password)) {
+        alert('Invalid Password,Please provide at least one numeric digit, one uppercase and one lowercase letter'+args.password);
       }
       else if(args.password != args.password_confirm) {
         alert("Password doen\'t match");
@@ -82,6 +85,36 @@
         traditional: true,
         success: function (response) {
           FoxCAPI.console('Login Response: ', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxUser.forgotPassword = function (email, callback) {
+      var url = FoxCAPI.getAPIResource() + "user/forgotPassword?email="+email;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console(': ', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxUser.updatePassword = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "user/updatePassword?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console(': ', response);
           callback(response);
         }
       });

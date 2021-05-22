@@ -14,9 +14,19 @@
   padding: 14px 20px;
   box-sizing: border-box;
   border: none;
+  border-radius: 4px;
   background-color: #f5f4f4;
-  border-radius: 8px;
   text-align: center;
+  border: 1px solid #ccc;
+}
+.input-03 {
+  outline: none; 
+  width: 100%;
+  padding: 6px 18px;
+  box-sizing: border-box;
+  border: none;
+  background-color: transparent;
+  border-radius: 3px;
 }
 .otp-input-box {
   display: flex;

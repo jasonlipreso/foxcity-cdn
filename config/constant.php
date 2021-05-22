@@ -29,6 +29,7 @@ $LINK_CSS_SELECT              = $REPO_CDN. 'css/dropdown.css';
 $LINK_CSS_SPLASH_SCREEN       = $REPO_CDN. 'css/splash-screen.css';
 $LINK_CSS_LOGIN               = $REPO_CDN. 'css/login.css';
 $LINK_CSS_LODING              = $REPO_CDN. 'css/loading.css';
+$LINK_CSS_DOC_MOBILE          = $REPO_CDN. 'css/document-mobile.css';
 $LINK_JS_JQUERY               = $REPO_CDN. 'js/jquery.min.js';
 $LINK_JS_JQUERY_3_6_0         = $REPO_CDN. 'js/jquery-3.6.0.js';
 $LINK_JS_LAYER_SWITCHER       = $REPO_CDN. 'js/cmn-layer-switcher.js';
@@ -40,6 +41,7 @@ $LINK_JS_SHOP_API             = $REPO_CDN. 'js/api-shop.js';
 $LINK_JS_AUTHENTICATE_API     = $REPO_CDN. 'js/api-authentication.js';
 $LINK_JS_TEXT_API             = $REPO_CDN. 'js/api-txt.js';
 $LINK_JS_OTP_FORM             = $REPO_CDN. 'js/otp-form.js';
+$LINK_JS_SORT_TABLE           = $REPO_CDN. 'js/jquery.tablesorter.js';
 
 /* LIBRARY COLLECTIONS */
 $LINK_SLICK_JS                = $REPO_CDN. 'library/slick/slick.js';

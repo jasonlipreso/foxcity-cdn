@@ -21,7 +21,7 @@
       <div class = "mssg">
         <p id = "app-mssg-confirm-mssg"></p>
         <div class = "action-buttons mt-20">
-          <button class = "bttn-05 app-confirm-close">CLOSE</button>
+          <button class = "bttn-05 app-confirm-close">NO</button>
           <button class = "bttn-02 app-confirm-yes">YES</button>
         </div>
       </div>
@@ -37,7 +37,7 @@
     width: 100%;
     height: 100%;
     background-color: #13121269;
-    z-index: 300;
+    z-index: 330;
     display: none;
   }
   .app-message .container {

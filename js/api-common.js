@@ -88,13 +88,12 @@
     };
 
     FoxCAPI.isValidMobileNumber = function (mobile_number) {
-      var code = mobile_number.substring(0, 2);
-      var leng = mobile_number.length;
-      if((code != '63') && (leng != 12)) {
-        return false;
+      var phoneno = /^\d{12}$/;
+      if(mobile_number.match(phoneno)) {
+        return true;
       }
       else {
-        return true;
+        return false;
       }
     };
 
@@ -198,25 +197,24 @@
       }
     };
 
-    FoxCAPI.toggleVisibility = function (elem, passElem, init) {
+    FoxCAPI.toggleVisibility = function (eyeElem, passElem, init) {
+      /*Unsuccess Code*/
+    };
 
-      var elem_on     = $(elem).eq(1).css('opacity');
-      var elem_off    = $(elem).eq(2).css('opacity');
+    FoxCAPI.passwordVisible = function (passElem) {
 
-      if(init) {
-        $(elem).eq(1).css('opacity', 0);
-        $(elem).eq(2).css('opacity', 1);
-        //$('#eVzij').attr('type','text');
+      if($(passElem).attr('type') == 'password') {
+        $(passElem).attr('type','text');
+        $(".eye-pass-open").css("opacity",1);
+        $(".eye-pass-close").css("opacity",0);
       }
-      else if((elem_on == 1)&&(init == false)) {
-        $(elem).eq(1).css('opacity', 0);
-        $(elem).eq(2).css('opacity', 1);
-        //$('#eVzij').attr('type','text');
+      else if($(passElem).attr('type') == 'text') {
+        $(passElem).attr('type','password');
+        $(".eye-pass-open").css("opacity",0);
+        $(".eye-pass-close").css("opacity",1);
       }
-      else if((elem_on == 0)&&(init == false)) {
-        $(elem).eq(1).css('opacity', 1);
-        $(elem).eq(2).css('opacity', 0);
-        //$('#eVzij').attr('type','text');
+      else {
+
       }
     };
 
@@ -308,8 +306,26 @@
       return month_word[month]+" "+day+" "+year+" "+time
     };
 
+    FoxCAPI.getDateTime = function () {
+      var date    = new Date();
+      var month   = date.getMonth() + 1;
+      var day     = date.getDate();
+      var year    = date.getFullYear();
+      var hour    = date.getHours();
+      var minute  = date.getHours();
+      var second  = date.getSeconds();
+
+      if(month <= 9) {month = "0"+month;}
+      if(day <= 9) {day = "0"+day;}
+
+      if(hour <= 9) {hour = "0"+hour;}
+      if(minute <= 9) {minute = "0"+minute;}
+      if(second <= 9) {second = "0"+second;}
+
+      return year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
+    };
+
     FoxCAPI.getDate = function () {
-      //2021-05-14
       var date    = new Date();
       var month   = date.getMonth() + 1;
       var day     = date.getDate();
@@ -322,7 +338,7 @@
     };
 
     FoxCAPI.getTime = function () {
-
+      var date    = new Date();
     };
 
     FoxCAPI.timeSince = function (date) {
@@ -703,6 +719,18 @@
           FoxCAPI.makeHeartbeat(position.coords.latitude, position.coords.longitude, FoxCAPI.getAppUserRefID(), function () {
             callback();
           });
+        });
+      }
+    };
+
+    FoxCAPI.getGeoLatLon = function (callback) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          var args = {
+            "lat":position.coords.latitude,
+            "lon":position.coords.longitude
+          };
+          callback(args);
         });
       }
     };
@@ -1292,6 +1320,16 @@
       });
     };
 
+    FoxCAPI.isValidPassword = function (password) {
+      var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+      if(password.match(passw)) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    };
+
     FoxCAPI.changePassword = function (args, callback) {
       /*
       var args = {
@@ -1437,8 +1475,114 @@
       });
     };
 
-    
-    
+    FoxCAPI.shopDataCounter = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food/counter?token="+FoxCAPI.getAppToken()+"&&user_refid="+FoxCAPI.getAppUserRefID()+"&shop_refid="+shop_refid;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.htmlLoaded = function (loadTo, url, callback) {
+      FoxCAPI.showLoading();
+      $(loadTo).load(url, function () {
+        callback();
+      });
+    };
+
+    FoxCAPI.makeNotify = function (args, callback) {
+
+      /*
+      FoxCAPI.makeNotify({
+        "token":FoxCAPI.getAppToken(),
+        "type":"",
+        "content":"",
+        "user_tag":["Array of user id"],
+        "info":""
+      });
+      */
+
+      var url = FoxCAPI.getAPIResource() + "notify/makeNotify?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.heartbeatList = function (user_refid, page, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/heartbeatList?token="+FoxCAPI.getAppToken()+"&user_refid="+user_refid+"&page="+page;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.removeItemFromCart = function (reference_id, callback) {
+      var url = FoxCAPI.getAPIResource() + "cart/removeItemFromCart?token="+FoxCAPI.getAppToken()+"&reference_id="+reference_id;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getProductPhotos = function (tag_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "photo/getProductPhotos?token="+FoxCAPI.getAppToken()+"&tag_refid="+tag_refid;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.userLogout = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "user/logout?token="+FoxCAPI.getAppToken();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
     return FoxCAPI;
   }
 
