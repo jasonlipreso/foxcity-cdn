@@ -1583,6 +1583,36 @@
       });
     };
 
+    FoxCAPI.getPlaceOrderStatus = function (order_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "cart/getPlaceOrderStatus/"+order_refid;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getWalletBalance = function (callback) {
+      var url = FoxCAPI.getAPIResource() + "wallet/getBalance?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
     return FoxCAPI;
   }
 

@@ -1,7 +1,7 @@
 .bttn-01 {padding: 10px 25px; background-color: #614b9f;color: white;font-size: 16px;font-weight: bold;letter-spacing: 1px;border: 3px solid #a494d0;border-radius: 20px; }
 .bttn-02 {padding: 10px 25px; background-color: red;color: white;font-size: 16px;font-weight: bold;letter-spacing: 1px;border: 3px solid #ffacac;border-radius: 20px; }
 .bttn-03 {padding: 10px 25px; background-color: green;color: white;font-size: 16px;font-weight: bold;letter-spacing: 1px;border: 3px solid #0ee00e;border-radius: 20px; }
-.bttn-04 { padding: 14px 0px;width: 100%;font-size: 18px;border-radius: 10px; }
+.bttn-04 {padding: 14px 0px;width: 100%;font-size: 18px;letter-spacing: 1px; border-radius: 10px; }
 .bttn-05 {padding: 10px 25px; background-color: #fed70c;color: white;font-size: 18px;font-weight: bold;letter-spacing: 1px;border: 3px solid #f9d30c;border-radius: 20px; }
 
 .bttn-disabled { opacity: 0.4; }

@@ -54,6 +54,21 @@
       });
     };
 
+    FCOffice.loadAllRiders = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "rider/loadAllRiders?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&city_code="+FCOffice.getCityCodeArray()+"&shop_refid="+shop_refid;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
     FCOffice.masterList = function (callback) {
       var url = FoxCAPI.getAPIResource() + "rider/masterList?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&city_code="+FCOffice.getCityCodeArray();
       $.ajax({

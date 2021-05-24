@@ -33,7 +33,7 @@
 .fox-base-container .footer {position: absolute;bottom: 0px;width: 100%;height: 50px;}
 .fox-base-container .footer .menu-base {position: relative;width: 50px;height: 50px;}
 .fox-base-container .footer .menu-base .icon { width: 40px;height: 40px;margin: 5px; }
-.fox-base-container .footer .menu-base .counter {position: absolute;top: 5px;right: 0px;padding: 2px 3px;font-family: sans-serif; font-size: 12px;color: white;background-color: red;border-radius: 4px; }
+.fox-base-container .footer .menu-base .counter {position: absolute;top: 5px;right: 0px;padding: 2px 3px;font-family: sans-serif; font-size: 12px;color: white;background-color: red;border-radius: 4px;opacity: 0; }
 
 .app-h-iconized-item { display: flex;padding: 5px;background-color: #f7f7f780; }
 .app-h-iconized-item .icon { width: 60px;height: 60px;border-radius: 6px;background-color: white; }
