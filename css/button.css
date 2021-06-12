@@ -8,6 +8,7 @@
 
 .bttn-06 { padding: 3px 20px; font-size: 14px; border-radius: 10px; }
 .bttn-07 {padding: 10px 25px; background-color: #1e7fcc;color: white;font-size: 14px;font-weight: bold;letter-spacing: 1px;border: 3px solid #2381cc;border-radius: 20px; }
+.bttn-08 {padding: 2px 25px; height: 32px; background-color: #1e7fcc;color: white;font-size: 12px;font-weight: normal;letter-spacing: 1px;border: 3px solid #2381cc;border-radius: 6px; }
 
 .bttn-toggle-01 {display: block;width: 60px;height: 30px;}
 .bttn-toggle-01 .line-base {position: absolute;margin-top: 10px; width: 100%;height: 10px;border-radius: 10px; background-color: #d6d6d6;}

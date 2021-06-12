@@ -28,6 +28,17 @@
   background-color: transparent;
   border-radius: 3px;
 }
+.input-04 {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  background-color: transparent;
+}
+.input-05 {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
 .otp-input-box {
   display: flex;
   flex-wrap: wrap;

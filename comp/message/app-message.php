@@ -37,7 +37,7 @@
     width: 100%;
     height: 100%;
     background-color: #13121269;
-    z-index: 330;
+    z-index: 530;
     display: none;
   }
   .app-message .container {

@@ -24,4 +24,5 @@
 <script type="text/javascript" src = "<?php echo $LINK_JS_AUTHENTICATE_API; ?>"></script>
 <script type="text/javascript" src = "<?php echo $LINK_JS_TEXT_API; ?>"></script>
 <script type="text/javascript" src = "<?php echo $LINK_JS_SORT_TABLE; ?>"></script>
+<script type="text/javascript" src = "<?php echo $LINK_JS_RIDER_API; ?>"></script>
 

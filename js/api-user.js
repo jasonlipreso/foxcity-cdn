@@ -8,27 +8,35 @@
 
       if(args.first_name == '') {
         alert('Please provide Firstname');
+        FoxCAPI.hideLoading();
       }
       else if(args.last_name == '') {
         alert('Please provide Lastname');
+        FoxCAPI.hideLoading();
       }
       else if (args.birthday == '') {
         alert('Please provide birthday');
+        FoxCAPI.hideLoading();
       }
       else if(!FoxCAPI.isValidEmail(args.email)) {
         alert('Please provide valid email');
+        FoxCAPI.hideLoading();
       }
       else if(!FoxCAPI.isValidMobileNumber(args.mobile)) {
         alert('Please provide valid mobile number, start with 63');
+        FoxCAPI.hideLoading();
       }
       else if(args.password == '') {
         alert('Please provide password');
+        FoxCAPI.hideLoading();
       }
       else if(!FoxCAPI.isValidPassword(args.password)) {
         alert('Invalid Password,Please provide at least one numeric digit, one uppercase and one lowercase letter'+args.password);
+        FoxCAPI.hideLoading();
       }
       else if(args.password != args.password_confirm) {
         alert("Password doen\'t match");
+        FoxCAPI.hideLoading();
       }
       else {
         var url = FoxCAPI.getAPIResource() + "user/register?"+jQuery.param(args);

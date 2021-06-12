@@ -5,6 +5,7 @@
 .m-15 { margin: 15px; }
 .m-20 { margin: 20px; }
 
+.mt-3 { margin-top: 3px; }
 .mt-5 { margin-top: 5px; }
 .mt-10 { margin-top: 10px; }
 .mt-15 { margin-top: 15px; }
@@ -19,6 +20,9 @@
 .mt-60 { margin-top: 60px; }
 .mt-65 { margin-top: 65px; }
 .mt-70 { margin-top: 70px; }
+.mt-80 { margin-top: 80px; }
+.mt-90 { margin-top: 90px; }
+.mt-100 { margin-top: 100px; }
 
 .ml-5 { margin-left: 5px; }
 .ml-10 { margin-left: 10px; }
@@ -34,3 +38,18 @@
 .ml-60 { margin-left: 60px; }
 .ml-65 { margin-left: 65px; }
 .ml-70 { margin-left: 70px; }
+
+.mr-5 { margin-right: 5px; }
+.mr-10 { margin-right: 10px; }
+.mr-15 { margin-right: 15px; }
+.mr-20 { margin-right: 20px; }
+.mr-25 { margin-right: 25px; }
+.mr-30 { margin-right: 30px; }
+.mr-35 { margin-right: 35px; }
+.mr-40 { margin-right: 40px; }
+.mr-45 { margin-right: 45px; }
+.mr-50 { margin-right: 50px; }
+.mr-55 { margin-right: 55px; }
+.mr-60 { margin-right: 60px; }
+.mr-65 { margin-right: 65px; }
+.mr-70 { margin-right: 70px; }

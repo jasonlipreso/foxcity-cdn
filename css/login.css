@@ -30,7 +30,8 @@
     padding: 10px;
   }
   .login .body .input-box input[type='email'],
-  .login .body .input-box input[type='password'] {
+  .login .body .input-box input[type='password'],
+  .login .body .input-box input[type='text'] {
     outline: none;
     font-size: 16px;
     letter-spacing: 2px;
@@ -108,3 +109,10 @@
     color: #53594f;
     line-height: 50px;
   }
+  .login .visibility {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    right: 10px;
+}

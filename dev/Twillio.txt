@@ -1,0 +1,11 @@
+Email: jason.foxcityph@gmail.com
+Password: Rylle161710123
+Number:+15153208162
+
+Number Configuration
+Friendly Name: Foxcity PH
+Phone Number: +1 515 320 8162
+Phone Number SID: PN38dba5cf5dc1bc34d27fb50dd687db89
+Capable: Voice, SMS, MMS
+
+

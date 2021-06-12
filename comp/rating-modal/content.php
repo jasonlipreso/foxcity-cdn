@@ -1,4 +1,4 @@
-
+<?php header("Access-Control-Allow-Origin: *"); ?>
 <div class = "container">
   <div class = "modal box-shadow-01">
     <p class = "fw-b fnt-fa fs-20 txt-a-c cl-black lh-1-5 mt-20" id = "title"></p>

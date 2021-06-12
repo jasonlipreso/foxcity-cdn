@@ -4,3 +4,23 @@ MySQL database name: u200905711_foxcityph
 MySQL username: u200905711_foxcityph
 Password: 8&]RLm/V
 Remote Access: https://auth-db354.hostinger.ph/?_ga=2.128574156.1365034087.1620365649-656100963.1607431398
+hOST: 45.130.228.154
+
+DB FUNCTIONS
+- RESET TABLE: http://127.0.0.1:8000/api/common/dbcall?function=resetTable
+
+LIVE----------------------------------------
+DB_CONNECTION=mysql
+DB_HOST=45.130.228.154
+DB_PORT=3306
+DB_DATABASE=u200905711_foxcityph
+DB_USERNAME=u200905711_foxcityph
+DB_PASSWORD=8&]RLm/V
+
+LOCAL---------------------------------------
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=foxcity_app_backend
+DB_USERNAME=root
+DB_PASSWORD=

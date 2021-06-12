@@ -468,6 +468,7 @@
       var url = FoxCAPI.getAPIResource() + "common/getProvinceList/"+region;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -503,6 +504,7 @@
       var url = FoxCAPI.getAPIResource() + "common/getCityList/"+province;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -518,6 +520,7 @@
       var url = FoxCAPI.getAPIResource() + "common/getBarangayList/"+city;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -533,6 +536,7 @@
       var url = FoxCAPI.getAPIResource() + "common/saveNearbySearch?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -548,6 +552,7 @@
       var url = FoxCAPI.getAPIResource() + "common/recentNearbySearches?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -563,6 +568,7 @@
       var url = FoxCAPI.getAPIResource() + "shop-food/getNearBy?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -578,6 +584,7 @@
       var url = FoxCAPI.getAPIResource() + "common/appFoxcityPrerequisite";
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -594,6 +601,7 @@
       var url = FoxCAPI.getAPIResource() + "user/getLastLocation/"+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -610,6 +618,7 @@
       var url = FoxCAPI.getAPIResource() + "shop-food/getFeaturedPlaces?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -626,6 +635,7 @@
       var url = FoxCAPI.getAPIResource() + "shop-food/getShopInfo?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -754,6 +764,7 @@
       var url = FoxCAPI.getAPIResource() + "cart/addProduct?data="+JSON.stringify(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'post',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -770,6 +781,7 @@
       var url = FoxCAPI.getAPIResource() + "cart/getCartRefID?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -784,6 +796,7 @@
       var url = FoxCAPI.getAPIResource() + "cart/countCartShop?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -800,6 +813,7 @@
       FoxCAPI.console('LOG-04112021114933-119', url);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -815,6 +829,7 @@
       var url = FoxCAPI.getAPIResource() + "cart/countItemInCart?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -830,6 +845,7 @@
       var url = FoxCAPI.getAPIResource() + "shipping/getShippingFee?token="+FoxCAPI.getAppToken()+"&shop_refid="+args.shop_refid+"&user_refid="+FoxCAPI.getAppUserRefID()+"&address_refid="+args.address_refid;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -845,6 +861,7 @@
       var url = FoxCAPI.getAPIResource() + "user/createDeliveryAddress?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -860,6 +877,7 @@
       var url = FoxCAPI.getAPIResource() + "user/getDeliveryAddress?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -875,6 +893,7 @@
       var url = FoxCAPI.getAPIResource() + "cart/isFirstOrder?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -890,6 +909,7 @@
       var url = FoxCAPI.getAPIResource() + "cart/placeOrder?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -905,6 +925,7 @@
       var url = FoxCAPI.getAPIResource() + "user/getAllDeliveryAddress?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -920,6 +941,7 @@
       var url = FoxCAPI.getAPIResource() + "user/switchDeliveryAddress?"+jQuery.param(args)
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -935,6 +957,7 @@
       var url = FoxCAPI.getAPIResource() + "common/getRecentlyOrdered?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -950,6 +973,7 @@
       var url = FoxCAPI.getAPIResource() + "user/createShopBookMark?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&shop_refid="+shop_refid;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -965,6 +989,7 @@
       var url = FoxCAPI.getAPIResource() + "user/isBookShopMarked?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&shop_refid="+shop_refid;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -980,6 +1005,7 @@
       var url = FoxCAPI.getAPIResource() + "common/appShopFoodPrerequisite?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -995,6 +1021,7 @@
       var url = FoxCAPI.getAPIResource() + "shop-food-orders/newOrders?token="+FoxCAPI.getAppToken()+"&shop_refid="+FoxCAPI.getAppShop();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1010,6 +1037,7 @@
       var url = FoxCAPI.getAPIResource() + "shop-food-orders/ongoingOrders?token="+FoxCAPI.getAppToken()+"&shop_refid="+FoxCAPI.getAppShop();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1025,6 +1053,7 @@
       var url = FoxCAPI.getAPIResource() + "shop-food-orders/completedOrders?token="+FoxCAPI.getAppToken()+"&shop_refid="+FoxCAPI.getAppShop()+"&date="+date;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1040,6 +1069,7 @@
       var url = FoxCAPI.getAPIResource() + "shop-food-users/logShopAccess?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&shop_refid="+shop_refid;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1055,6 +1085,7 @@
       var url = FoxCAPI.getAPIResource() + "shop-food-orders/getOrderItem?token="+FoxCAPI.getAppToken()+"&reference_id="+order_refid;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1070,6 +1101,7 @@
       var url = FoxCAPI.getAPIResource() + "search/food?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1085,6 +1117,7 @@
       var url = FoxCAPI.getAPIResource() + "search/shop?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1100,6 +1133,7 @@
       var url = FoxCAPI.getAPIResource() + "user/makeSetting?user_refid="+FoxCAPI.getAppUserRefID()+"&name="+name+"&value="+value;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1115,6 +1149,7 @@
       var url = FoxCAPI.getAPIResource() + "user/getALLSetting/"+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1146,6 +1181,7 @@
       var url = FoxCAPI.getAPIResource() + "common/editor?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1161,6 +1197,7 @@
       var url = FoxCAPI.getAPIResource() + "shop-food/getAllShopProducts?token="+FoxCAPI.getAppToken()+"&shop_refid="+shop_refid;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1176,6 +1213,7 @@
       var url = FoxCAPI.getAPIResource() + "common/seen?token="+FoxCAPI.getAppToken()+"&data_refid="+data_refid+"&user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1191,6 +1229,7 @@
       var url = FoxCAPI.getAPIResource() + "cart/updatePlaceOrderStatus?token="+FoxCAPI.getAppToken()+"&reference_id="+reference_id+"&status="+status;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1206,6 +1245,7 @@
       var url = FoxCAPI.getAPIResource() + "common/makeHeartbeat?token="+FoxCAPI.getAppToken()+"&user_refid="+user_refid+"&latitude="+latitude+"&longitude="+longitude;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1221,6 +1261,7 @@
       var url = FoxCAPI.getAPIResource() + "common/appRiderPrerequisite?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1236,6 +1277,7 @@
       var url = FoxCAPI.getAPIResource() + "common/getHotSale?city_code="+city_code;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1248,9 +1290,13 @@
     };
 
     FoxCAPI.sentSMS = function (number, brandname, message, callback) {
-      var url = FoxCAPI.getAPIResource() + "vonage/sms/send?token="+FoxCAPI.getAppToken()+"&number="+number+"&brandname="+brandname+"&message="+message;
+      
+      //var url = FoxCAPI.getAPIResource() + "vonage/sms/send?token="+FoxCAPI.getAppToken()+"&number="+number+"&brandname="+brandname+"&message="+message;
+      var url = FoxCAPI.getAPIResource() + "twilio/send?token="+FoxCAPI.getAppToken()+"&number="+number+"&brandname="+brandname+"&message="+message;
+      
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1266,6 +1312,7 @@
       var url = FoxCAPI.getAPIResource() + "common/sendEmail?token="+FoxCAPI.getAppToken()+"&subject="+subject+"&inquiry="+inquiry+"&email="+email+"&name="+name;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1281,6 +1328,7 @@
       var url = FoxCAPI.getAPIResource() + "shop-food/getNearByShop?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1309,6 +1357,7 @@
       var url = FoxCAPI.getAPIResource() + "common/getColumn?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1343,6 +1392,7 @@
       var url = FoxCAPI.getAPIResource() + "user/changePassword?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1359,6 +1409,7 @@
       var url = FoxCAPI.getAPIResource() + "user/sendOTP?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1389,6 +1440,7 @@
       var url = FoxCAPI.getAPIResource() + "shop-food-orders/cancel?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&order_refid="+order_refid;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1404,6 +1456,7 @@
       var url = FoxCAPI.getAPIResource() + "rating/rating?token="+FoxCAPI.getAppToken()+"&target_refid="+target_refid+"&scope="+scope+"&user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1419,6 +1472,7 @@
       var url = FoxCAPI.getAPIResource() + "search/search/?keyword="+keyword+"&user_refid="+FoxCAPI.getAppUserRefID()+"&city="+city;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1434,6 +1488,7 @@
       var url = FoxCAPI.getAPIResource() + "user/getbookmarked?user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1449,6 +1504,7 @@
       var url = FoxCAPI.getAPIResource() + "category/getCategoryItems?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&city_code="+object_user_location.city+"&category="+category+"&page="+page;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1464,6 +1520,7 @@
       var url = FoxCAPI.getAPIResource() + "shop-food-orders/activity?token="+FoxCAPI.getAppToken()+"&order_refid="+order_refid+"&user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1479,6 +1536,7 @@
       var url = FoxCAPI.getAPIResource() + "shop-food/counter?token="+FoxCAPI.getAppToken()+"&&user_refid="+FoxCAPI.getAppUserRefID()+"&shop_refid="+shop_refid;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1512,6 +1570,7 @@
       var url = FoxCAPI.getAPIResource() + "notify/makeNotify?"+jQuery.param(args);
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1527,6 +1586,7 @@
       var url = FoxCAPI.getAPIResource() + "common/heartbeatList?token="+FoxCAPI.getAppToken()+"&user_refid="+user_refid+"&page="+page;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1542,6 +1602,7 @@
       var url = FoxCAPI.getAPIResource() + "cart/removeItemFromCart?token="+FoxCAPI.getAppToken()+"&reference_id="+reference_id;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1557,6 +1618,7 @@
       var url = FoxCAPI.getAPIResource() + "photo/getProductPhotos?token="+FoxCAPI.getAppToken()+"&tag_refid="+tag_refid;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1572,6 +1634,7 @@
       var url = FoxCAPI.getAPIResource() + "user/logout?token="+FoxCAPI.getAppToken();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1587,6 +1650,7 @@
       var url = FoxCAPI.getAPIResource() + "cart/getPlaceOrderStatus/"+order_refid;
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1602,6 +1666,7 @@
       var url = FoxCAPI.getAPIResource() + "wallet/getBalance?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID();
       $.ajax({
         url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
         type: 'get',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
@@ -1612,6 +1677,310 @@
         }
       });
     };
+
+    FoxCAPI.priceUpdate = function (product_refid, shop_refid, price, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-product/priceUpdate?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&product_refid="+product_refid+"&shop_refid="+shop_refid+"&price="+price;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.neighborCity = function (city_code, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/neighborCity/"+city_code;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getCityInfo = function (city_code, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/getCityInfo/"+city_code;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.gh58vGFeD = function (wallet_refid, user_refid, amount, addnote, callback) {
+      var url = FoxCAPI.getAPIResource() + "wallet/gh58vGFeD?token="+FoxCAPI.getAppToken()+"&wallet_refid="+wallet_refid+"&user_refid="+user_refid+"&amount="+amount+"&addnote="+addnote;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.hb7gBvG8i = function (wallet_refid, user_refid, amount, addnote, callback) {
+      var url = FoxCAPI.getAPIResource() + "wallet/hb7gBvG8i?token="+FoxCAPI.getAppToken()+"&wallet_refid="+wallet_refid+"&user_refid="+user_refid+"&amount="+amount+"&addnote="+addnote;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.hjy7cvf4w = function (wallet_refid, user_refid, amount, addnote, callback) {
+      var url = FoxCAPI.getAPIResource() + "wallet/hjy7cvf4w?token="+FoxCAPI.getAppToken()+"&wallet_refid="+wallet_refid+"&user_refid="+user_refid+"&amount="+amount+"&addnote="+addnote;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getCityMaxOrder = function (city_code, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/getCityMaxOrder/"+city_code;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getAllMerchantNames = function (city_code, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food/getAllMerchantNames?city_code="+city_code;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getMoreFeaturedPlaces = function (city_code, featured, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food/getMoreFeaturedPlaces?city_code="+city_code+"&featured="+featured;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getDeliveryAddressByOrderRefID = function (order_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "user/getDeliveryAddressByOrderRefID?token="+FoxCAPI.getAppToken()+"&order_refid="+order_refid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getShopServiceFee = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food/getShopServiceFee/"+shop_refid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.getProductGroupType = function (type, product_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-product/getGroupType?type="+type+"&product_refid="+product_refid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FoxCAPI.updateGroupType1 = function (type, product_refid, group_refid, group_value, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-product/updateGroupType1?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&type="+type+"&product_refid="+product_refid+"&group_refid="+group_refid+"&group_value="+group_value;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.getShopCoverPhoto = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "photo/getShopCoverPhoto/"+shop_refid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.toCustomer_orderAccepted = function (order_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "twilio/call/?function=toCustomer_orderAccepted&order_refid="+order_refid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.toCustomer_orderDenied = function (order_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "twilio/call/?function=toCustomer_orderDenied&order_refid="+order_refid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.toRider_notifyForNewTask = function (order_refid, rider_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "twilio/call/?function=toRider_notifyForNewTask&order_refid="+order_refid+"&rider_refid="+rider_refid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.getProductStatus = function (product_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-product/call/?function=getProductStatus_common&product_refid="+product_refid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.getOrderStatus = function (order_dataid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-orders/orderView?type=ORDER_STATUS&order_dataid="+order_dataid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
 
     return FoxCAPI;
   }

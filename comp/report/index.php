@@ -9,8 +9,8 @@
       <p class = "fnt-fa fs-14 cl-light-gray lh-1-5 mt-10">Your report and feedback is highly appreciated it will help us to improve our app and business process.</p>
       <textarea class = "issue-txt fs-16 mt-10" id = "ght61qa8"></textarea>
       <div class = "d-f-sb mt-10">
-        <button class = "bttn-01 ls-1" onclick=" FoxIssue.close()">Cancel</button>
-        <button class = "bttn-07 ls-1" onclick="FoxIssue.submit()">Submit</button>
+        <button class = "bttn-07 ls-1" onclick=" FoxIssue.close()">Cancel</button>
+        <button class = "bttn-05 ls-1" onclick="FoxIssue.submit()">Submit</button>
       </div>
     </div>
 
@@ -61,15 +61,18 @@
           traditional: true,
           success: function (response) {
             if(response) {
+              FoxIssue.close();
               $("#ght61qa8").val('');
-              FoxSysMssg.info("", "Feedback sent successfully.We will work on it.Thank you.", function () {
-                FoxIssue.close();
-              });
+              setTimeout(function () {
+                FoxSysMssg.info("", "Feedback sent successfully.We will work on it.Thank you.", function () {});
+              },1500);
             }
             else {
-              FoxSysMssg.info("", "Unable to sent feedback.", function () {
-                FoxIssue.close();
-              });
+              FoxIssue.close();
+              setTimeout(function () {
+                FoxSysMssg.info("", "Unable to sent feedback.", function () {});
+              },1500);
+              
             }
           }
         });
@@ -95,7 +98,7 @@
     width: 100%;
     height: 100%;
     background-color: #23232387;
-    z-index: 310;
+    z-index: 600;
     display: none;
   }
   .app-report-issue .issue-cont {

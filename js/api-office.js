@@ -69,8 +69,9 @@
       });
     };
 
-    FCOffice.masterList = function (callback) {
-      var url = FoxCAPI.getAPIResource() + "rider/masterList?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&city_code="+FCOffice.getCityCodeArray();
+    FCOffice.masterList = function (keyword, callback) {
+      var url = FoxCAPI.getAPIResource() + "rider/rider_master_list?token="+FoxCAPI.getAppToken()+"&keyword="+keyword+"&user_refid="+FoxCAPI.getAppUserRefID()+"&city_code="+FCOffice.getCityCodeArray();
+      console.log(url);
       $.ajax({
         url: url,
         type: 'get',
@@ -83,6 +84,71 @@
         }
       });
     };
+
+    FCOffice.masterList2 = function (keyword, page, callback) {
+      var url = FoxCAPI.getAPIResource() + "rider/masterList?token="+FoxCAPI.getAppToken()+"&keyword="+keyword+"&user_refid="+FoxCAPI.getAppUserRefID()+"&city_code="+FCOffice.getCityCodeArray()+"&page="+page;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FCOffice.getShopMasterList = function (keyword, page, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food/getList?token="+FoxCAPI.getAppToken()+"&keyword="+keyword+"&page="+page+"&city_code="+FCOffice.getCityCodeArray();
+      console.log(url);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FCOffice.getShopStaffList = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food/getShopStaff/"+shop_refid;
+      console.log(url);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+    FCOffice.shopProductMasterList = function (shop_refid, page, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-product/productMasterList?token="+FoxCAPI.getAppToken()+"&shop_refid="+shop_refid+"&page="+page;
+      console.log(url);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
+
 
     return FCOffice;
   }

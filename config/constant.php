@@ -42,6 +42,8 @@ $LINK_JS_AUTHENTICATE_API     = $REPO_CDN. 'js/api-authentication.js';
 $LINK_JS_TEXT_API             = $REPO_CDN. 'js/api-txt.js';
 $LINK_JS_OTP_FORM             = $REPO_CDN. 'js/otp-form.js';
 $LINK_JS_SORT_TABLE           = $REPO_CDN. 'js/jquery.tablesorter.js';
+$LINK_JS_FOXCITY_APP          = $REPO_FOXCITY_APP. 'js/api-foxcity.js';
+$LINK_JS_RIDER_API            = $REPO_RIDER_APPP. 'js/api-foxcity.js';
 
 /* LIBRARY COLLECTIONS */
 $LINK_SLICK_JS                = $REPO_CDN. 'library/slick/slick.js';

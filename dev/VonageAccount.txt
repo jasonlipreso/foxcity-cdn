@@ -1,0 +1,23 @@
+Jaettrixx Lipreso <jasonlipreso@gmail.com>
+  
+May 21, 2021, 12:43 PM (13 days ago)
+  
+to me, Tresha
+Email: jasonlipreso@gmail.com
+Password: Rylle161710
+
+
+
+App
+Name: Foxcity SMS
+API Key: Master (0e6ea613)
+Authentication:
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnax1Z2d16ESZqytFnV48
+kTp2us2VGT0T5h/3ehEitsZ0RZUK4LrrmAr1VwMId4xn7YwIx4MEX8S8rGl3A4y0
+Gz8G7EWpaW+xculohcTZxomj65zCxGUCYowqNkiHZ71yBz3YrGft6a5y6kP3Pbe3
+NNy26uf5YLFZFlZZHRkOrq9sREahGFBM7oGj8Nt2Rlm4btVdDWjeGhErT43HX2JU
+pHROJfPtqKDB9p2lWh+pBXmbl6+0pItyVNqUMe01WbQq6DrbAxNWRUknIzD1b3wg
+FJcR2kU8cGYOMYMvl+NR0kJrixjtgorTgOGjZVw7s2QyTxydYaZj+xyy8MhUOHZH
+mwIDAQAB
+-----END PUBLIC KEY-----
