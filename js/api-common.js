@@ -1982,6 +1982,22 @@
       });
     }
 
+     FoxCAPI.userFacebook = function (first_name, last_name, social_id_facebook, mobile, callback) {
+      var url = FoxCAPI.getAPIResource() + "user/facebook?function=create&first_name="+first_name+"&last_name="+last_name+"&social_id_facebook="+social_id_facebook+"&mobile="+mobile;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
     return FoxCAPI;
   }
 

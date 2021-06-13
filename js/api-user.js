@@ -128,6 +128,21 @@
       });
     };
 
+    FoxUser.updatePassword = function (args, callback) {
+      var url = FoxCAPI.getAPIResource() + "user/updatePassword?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console(': ', response);
+          callback(response);
+        }
+      });
+    };
+
     return FoxUser;
   }
 
