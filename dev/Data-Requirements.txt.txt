@@ -1,0 +1,6 @@
+
+RIDER REGISTRATION
+	- Create user data in user table
+	- Set rider geolocation
+	- Create rider wallet
+	- 

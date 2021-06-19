@@ -25,3 +25,18 @@ DB_PORT=3306
 DB_DATABASE=foxcity_app_backend
 DB_USERNAME=root
 DB_PASSWORD=
+
+
+SELECT 
+product_food.dataid,
+product_food_price.dataid as id,
+product_food.reference_id,
+product_food.name,
+product_food_price.price,
+product_food_price.price_origin,
+product_food_price.price_fee_applied
+FROM `product_food`
+INNER JOIN product_food_price
+ON product_food.reference_id = product_food_price.product_refid
+WHERE product_food.shop_refid = 'SFD-05082021064237-TCL'
+ORDER BY product_food.dataid ASC

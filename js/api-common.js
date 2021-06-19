@@ -616,6 +616,7 @@
 
     FoxCAPI.getFeaturedPlaces = function (args, callback) {
       var url = FoxCAPI.getAPIResource() + "shop-food/getFeaturedPlaces?"+jQuery.param(args);
+      FoxCAPI.console('Featured places', url);
       $.ajax({
         url: url,
         headers: {'Access-Control-Allow-Origin': '*'},
@@ -1369,6 +1370,34 @@
       });
     };
 
+    FoxCAPI.getRow = function (args, callback) {
+      
+      /*
+        FoxCAPI.getRow({
+          'token':'',
+          'table':'',
+          'wclm':'',
+          'wval':''
+        }, function (response) {
+
+        });
+      */
+
+      var url = FoxCAPI.getAPIResource() + "common/getRow?"+jQuery.param(args);
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
     FoxCAPI.isValidPassword = function (password) {
       var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
       if(password.match(passw)) {
@@ -1967,7 +1996,28 @@
     }
 
     FoxCAPI.getOrderStatus = function (order_dataid, callback) {
-      var url = FoxCAPI.getAPIResource() + "shop-food-orders/orderView?type=ORDER_STATUS&order_dataid="+order_dataid;
+      if(order_dataid == 'undefined') {
+        console.error("Error : order_dataid is undefined, No request sent to serve");
+      }
+      else {
+        var url = FoxCAPI.getAPIResource() + "shop-food-orders/orderView?type=ORDER_STATUS&order_dataid="+order_dataid;
+        $.ajax({
+          url: url,
+          headers: {'Access-Control-Allow-Origin': '*'},
+          type: 'get',
+          dataType: 'json',
+          contentType: 'application/json; charset=utf-8',
+          traditional: true,
+          success: function (response) {
+            FoxCAPI.console('', response);
+            callback(response);
+          }
+        });
+      }
+    }
+
+    FoxCAPI.userFacebook = function (first_name, last_name, social_id_facebook, mobile, callback) {
+      var url = FoxCAPI.getAPIResource() + "user/facebook?function=create&first_name="+first_name+"&last_name="+last_name+"&social_id_facebook="+social_id_facebook+"&mobile="+mobile;
       $.ajax({
         url: url,
         headers: {'Access-Control-Allow-Origin': '*'},
@@ -1982,8 +2032,8 @@
       });
     }
 
-     FoxCAPI.userFacebook = function (first_name, last_name, social_id_facebook, mobile, callback) {
-      var url = FoxCAPI.getAPIResource() + "user/facebook?function=create&first_name="+first_name+"&last_name="+last_name+"&social_id_facebook="+social_id_facebook+"&mobile="+mobile;
+    FoxCAPI.getOrderRider = function (order_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "rider/getOrderRider/"+order_refid;
       $.ajax({
         url: url,
         headers: {'Access-Control-Allow-Origin': '*'},
