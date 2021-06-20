@@ -40,3 +40,9 @@ INNER JOIN product_food_price
 ON product_food.reference_id = product_food_price.product_refid
 WHERE product_food.shop_refid = 'SFD-05082021064237-TCL'
 ORDER BY product_food.dataid ASC
+
+GET DUPLICATE RECORD
+SELECT photo_refid, tagged_refid, COUNT(*)
+FROM photo_tagging
+GROUP BY photo_refid, tagged_refid
+HAVING COUNT(*) > 1

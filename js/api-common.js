@@ -2048,6 +2048,22 @@
       });
     }
 
+    FoxCAPI.shopMenuGroupList = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-product/call?function=shopMenuGroupList&shop_refid="+shop_refid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
     return FoxCAPI;
   }
 
