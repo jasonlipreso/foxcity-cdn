@@ -1465,6 +1465,21 @@
       });
     };
 
+    FoxCAPI.orderRecalculate = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-orders/orderView?type=RECALCULATE&token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&shop_refid="+shop_refid;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
     FoxCAPI.orderCancel = function (order_refid, callback) {
       var url = FoxCAPI.getAPIResource() + "shop-food-orders/cancel?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&order_refid="+order_refid;
       $.ajax({
@@ -2050,6 +2065,46 @@
 
     FoxCAPI.shopMenuGroupList = function (shop_refid, callback) {
       var url = FoxCAPI.getAPIResource() + "shop-food-product/call?function=shopMenuGroupList&shop_refid="+shop_refid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.updatePriceWithVariant = function (title, product_refid, shop_refid, variant, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-product/call?function=update_price_with_variant&token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&product_refid="+product_refid+"&shop_refid="+shop_refid+"&title="+title+"&variant="+variant;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.updatePriceRegular = function (args, callback) {
+      /*
+      FoxCAPI.updatePriceRegular({
+        'product_refid':'',
+        'price':'',
+        'price_origin':'',
+        'price_fee_applied':''},
+        callback);
+      */
+      var url = FoxCAPI.getAPIResource() + "shop-food-product/call?function=priceUpdate_regular&token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&"+jQuery.param(args);
       $.ajax({
         url: url,
         headers: {'Access-Control-Allow-Origin': '*'},

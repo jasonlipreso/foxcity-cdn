@@ -97,6 +97,8 @@
 .h-70 { height: 70px; }
 .h-80 { height: 80px; }
 .h-100 { height: 100px; }
+.outline-none { outline: none; }
+.brd-01 { border: 1px solid #ccc; }
 
 @media only screen and (min-width: 320px) and (max-width: 360px) {
 

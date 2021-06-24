@@ -3,13 +3,20 @@
 MySQL database name: u200905711_foxcityph
 MySQL username: u200905711_foxcityph
 Password: 8&]RLm/V
-Remote Access: https://auth-db354.hostinger.ph/?_ga=2.128574156.1365034087.1620365649-656100963.1607431398
+Remote Access: https://auth-db354.hostinger.com/index.php?db=u200905711_fc_main_live
 hOST: 45.130.228.154
 
 DB FUNCTIONS
 - RESET TABLE: DEMO : http://127.0.0.1:8000/api/common/dbcall?function=resetTable
-- RESTE TABLE: LIVE : https://foxcityph.com/api/common/dbcall?function=resetTable
+- RESET TABLE: LIVE : https://foxcityph.com/api/common/dbcall?function=resetTable
 
+App: 
+  - Foxcity App:
+  http://localhost/foxcity-app/home.php?signin=true&success=true&token=TKN-06222021040957-217&reference_id=USR-033121093459-TCS&first_name=Jason&last_name=Lipreso&mobile=639753135293&email=jasonlipreso%40gmail.com&nearby_refid=&region=&province=&city=&brgy=&city_name=
+  - Rider App
+  http://localhost/foxcity-rider/home.php?signin=true&success=true&token=TKN-06222021101529-9MS&reference_id=USR-06192021105053-6N5&first_name=Alvin&last_name=Rufo&mobile=639491382913&email=AlvinRuf9KL%40foxcityph.com
+
+  
 LIVE----------------------------------------
 DB_CONNECTION=mysql
 DB_HOST=45.130.228.154
