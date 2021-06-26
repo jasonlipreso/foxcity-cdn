@@ -15,7 +15,9 @@ App:
   http://localhost/foxcity-app/home.php?signin=true&success=true&token=TKN-06222021040957-217&reference_id=USR-033121093459-TCS&first_name=Jason&last_name=Lipreso&mobile=639753135293&email=jasonlipreso%40gmail.com&nearby_refid=&region=&province=&city=&brgy=&city_name=
   - Rider App
   http://localhost/foxcity-rider/home.php?signin=true&success=true&token=TKN-06222021101529-9MS&reference_id=USR-06192021105053-6N5&first_name=Alvin&last_name=Rufo&mobile=639491382913&email=AlvinRuf9KL%40foxcityph.com
-
+  - Office App
+  http://localhost/foxcity-office/home.php?signin=true&success=true&token=TKN-06252021075533-KF0&reference_id=USR-033121093459-TCS&first_name=Jason&last_name=Lipreso&mobile=639753135293&email=jasonlipreso%40gmail.com&nearby_refid=NBS-06252021075027-LRA&region=07&province=0722&city=072209&brgy=&city_name=Bantayan
+  - Merchant App
   
 LIVE----------------------------------------
 DB_CONNECTION=mysql
@@ -53,3 +55,9 @@ SELECT photo_refid, tagged_refid, COUNT(*)
 FROM photo_tagging
 GROUP BY photo_refid, tagged_refid
 HAVING COUNT(*) > 1
+
+GET OPT
+SELECT otp.dataid, user.last_name, user.first_name, otp.otp,otp.tag, user.mobile, otp.verified_date, otp.created_date 
+FROM `user` 
+INNER JOIN otp ON user.reference_id = otp.tag 
+ORDER BY otp.dataid DESC LIMIT 10  

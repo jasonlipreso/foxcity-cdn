@@ -1,6 +1,8 @@
 Email: jason.foxcityph@gmail.com
 Password: Rylle161710123
 Number:+15153208162
+Recovery: 1j3rlRcgvNbDzzrKTXP9BevgmCLFK0fJrNVEz1Vn
+Your Messaging Service SID: MG48ba6084943b6646a1d0f59d8c67292d 
 
 Number Configuration
 Friendly Name: Foxcity PH

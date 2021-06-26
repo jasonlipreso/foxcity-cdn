@@ -2119,6 +2119,86 @@
       });
     }
 
+    FoxCAPI.shopProductCategories = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-product/call?function=shop_category&token="+FoxCAPI.getAppToken()+"&shop_refid="+shop_refid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.shopProductByCategories = function (shop_refid, category, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-product/call?function=shop_product_by_category&token="+FoxCAPI.getAppToken()+"&shop_refid="+shop_refid+"&category="+category;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.shopProductNoCategories = function (shop_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-product/call?function=shop_product_no_category&token="+FoxCAPI.getAppToken()+"&shop_refid="+shop_refid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.getSMSLogs = function (page, callback) {
+      var url = FoxCAPI.getAPIResource() + "twilio/call?function=get_sms_log&page="+page;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.getSysConfig = function (config, name, callback) {
+      var url = FoxCAPI.getAPIResource() + "common/callConfig?function="+config+"&name="+name;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
     return FoxCAPI;
   }
 
