@@ -1722,6 +1722,22 @@
       });
     };
 
+    FoxCAPI.getUserWalletBalance = function (user_refid, callback) {
+      var url = FoxCAPI.getAPIResource() + "wallet/getBalance?token="+FoxCAPI.getAppToken()+"&user_refid="+user_refid;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    };
+
     FoxCAPI.priceUpdate = function (product_refid, shop_refid, price, callback) {
       var url = FoxCAPI.getAPIResource() + "shop-food-product/priceUpdate?token="+FoxCAPI.getAppToken()+"&user_refid="+FoxCAPI.getAppUserRefID()+"&product_refid="+product_refid+"&shop_refid="+shop_refid+"&price="+price;
       $.ajax({
@@ -2185,6 +2201,22 @@
 
     FoxCAPI.getSysConfig = function (config, name, callback) {
       var url = FoxCAPI.getAPIResource() + "common/callConfig?function="+config+"&name="+name;
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.orderMonitoring = function (func, args, callback) {
+      var url = FoxCAPI.getAPIResource() + "dash-monitoring/orderMonitoring?function="+func+"&"+jQuery.param(args);
       $.ajax({
         url: url,
         headers: {'Access-Control-Allow-Origin': '*'},
