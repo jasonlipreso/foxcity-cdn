@@ -16,6 +16,7 @@
         'app_cdn':'http://localhost/foxcity-cdn/',
         'app_rider':'http://localhost/foxcity-rider/',
         'app_shop_food':'http://localhost/foxcity-mobile-restaurant/',
+        'app_padala':'http://localhost/foxcity-padala/',
         'default_region':'07',
         'default_cover':'http://localhost/foxcity-fileserver/defaultPhotos/wallpaper-background-dark.png',
         'loading_gif_16x16':'img/loading-16x16.gif',
@@ -30,12 +31,27 @@
         'app_cdn':'https://www.foxcityph.com/foxcity-cdn/',
         'app_rider':'https://www.foxcityph.com/foxcity-rider/',
         'app_shop_food':'https://www.foxcityph.com/foxcity-mobile-restaurant/',
+        'app_padala':'https://www.foxcityph.com/foxcity-padala/',
         'default_region':'07',
         'default_cover':'https://www.foxcityph.com/foxcity-fileserver/defaultPhotos/wallpaper-background-dark.png',
         'loading_gif_16x16':'img/loading-16x16.gif',
         'sms_brandname':'Foxcity PH'
       };
     }
+
+    FoxCAPI.goToFood = function (user_refid) {
+      var token         = FoxCAPI.getURLParameter('token');
+      var reference_id  = FoxCAPI.getURLParameter('reference_id');
+      var path_url      = FoxCAPI.getConfig()['app_foxcity']+"home.php"+"?token="+token+"&reference_id="+reference_id;
+      window.location   = path_url;
+    };
+
+    FoxCAPI.goToPadala = function (user_refid) {
+      var token         = FoxCAPI.getURLParameter('token');
+      var reference_id  = FoxCAPI.getURLParameter('reference_id');
+      var path_url      = FoxCAPI.getConfig()['app_padala']+"?token="+token+"&reference_id="+reference_id;
+      window.location   = path_url;
+    };
 
     FoxCAPI.console = function (name, args) {
       if(debug) {
@@ -85,6 +101,23 @@
     FoxCAPI.isValidEmail = function (email) {
       var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
       return regex.test(email);
+    };
+
+    FoxCAPI.getURLParameter = function (sParam) {
+      var sPageURL = window.location.search.substring(1);
+      var sURLVariables = sPageURL.split('&');
+      var sParameterName;
+      var i;
+
+      for (i = 0; i < sURLVariables.length; i++) {
+          sParameterName = sURLVariables[i].split('=');
+
+          if (sParameterName[0] === sParam) {
+              return typeof sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+          }
+      }
+
+      return false;
     };
 
     FoxCAPI.isValidMobileNumber = function (mobile_number) {
@@ -2226,6 +2259,40 @@
         traditional: true,
         success: function (response) {
           FoxCAPI.console('', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.shopOrderView = function (func, args, callback) {
+      var url = FoxCAPI.getAPIResource() + "shop-food-orders/orderView?type="+func+"&"+jQuery.param(args);
+      FoxCAPI.console("FoxCAPI.shopOrderView URL:", url);
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('FoxCAPI.shopOrderView():', response);
+          callback(response);
+        }
+      });
+    }
+
+    FoxCAPI.userRequest = function (func, args, callback) {
+      var url = FoxCAPI.getAPIResource() + "user/caller?function="+func+"&"+jQuery.param(args);
+      FoxCAPI.console("FoxCAPI.shopOrderView URL:", url);
+      $.ajax({
+        url: url,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        traditional: true,
+        success: function (response) {
+          FoxCAPI.console('FoxCAPI.shopOrderView():', response);
           callback(response);
         }
       });
