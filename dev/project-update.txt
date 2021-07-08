@@ -6,4 +6,6 @@ JULY 02 2021                                            LIVE
   - Add item from dashboard added.......................YES................July 02, 2021
   - Dashboard column card counter.......................YES................July 02, 2021
   - Invoice.............................................YES................July 03, 2021
-  - Registered User Master List.........................NO.................July 03, 2021
+  - Registered User Master List.........................YES................July 03, 2021
+  - Office Purchases Print Report.......................YES................July 05, 2021
+  - Update place_order table PRD_JO to RDR_FDD..........NO.................July 07, 2021

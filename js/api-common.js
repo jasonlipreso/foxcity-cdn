@@ -134,8 +134,13 @@
       $('.loading').css({'display':'block'});
     };
 
+    FoxCAPI.loadingText = function (text) {
+      $('.loading-text').text(text);
+    };
+
     FoxCAPI.hideLoading = function () {
       $('.loading').css({'display':'none'});
+      $('.loading-text').text('');
     };
 
     FoxCAPI.getPrerequisite = function () {
