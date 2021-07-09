@@ -86,10 +86,12 @@
 .box-shadow-02 { box-shadow: -1px 9px 7px 0px #80808036; }
 .box-shadow-03 {webkit-box-shadow: 0px -4px 5px rgb(197 196 196 / 76%);-moz-box-shadow: 0px -4px 5px rgba(197, 196, 196, 0.76);box-shadow: 0px -4px 5px rgb(197 196 196 / 76%);}
 
-.app-switcher {width: 100%;height: 50px;}
-.app-switcher .app-icon-cont {width: 50px;height: 50px;border-radius: 50%;border: 1px solid transparent;}
-.app-switcher .app-icon-cont.active {border: 1px solid #fdb813;}
-.app-switcher .app-icon {margin-top: 2px;margin-left: 5px;width: 40px;height: 40px;}
+.app-switcher-cont {background-color: #614b9f;box-shadow: 1px 1px 10px 7px #bfbfbf;}
+.app-switcher {width: 100%;height: 53px;}
+.app-switcher .app-icon-cont {width: 50px;height: 50px;}
+.app-switcher .app-icon-cont.active {border-bottom: 3px solid white;}
+.app-switcher .app-icon {display: block; margin-top: 2px;margin-left: auto;margin-right: auto; width: 30px;height: 30px;}
+.app-switcher .app-label {font-size: 11px;color: white;text-align: center;font-family: sans-serif;}
 
 .v-a-middle { vertical-align: middle; }
 .opacity-0 { opacity: 0; }

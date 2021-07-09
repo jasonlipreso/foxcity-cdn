@@ -2,7 +2,8 @@
 ===============================================================================================================
 Customer App:
 ---------------------------------------------------------------------------------------------------------------
-- http://localhost/foxcity-app/home.php?token=TKN-07082021032035-C6T&reference_id=USR-033121093459-TCS
+- Food: http://localhost/foxcity-app/home.php?token=TKN-07082021032035-C6T&reference_id=USR-033121093459-TCS
+- Padala: http://localhost/foxcity-padala/?token=TKN-07082021032035-C6T&reference_id=USR-033121093459-TCS
 
 ===============================================================================================================
 Merchant App: 
@@ -25,6 +26,7 @@ Office App:
 Rider App: 
 ---------------------------------------------------------------------------------------------------------------
 - Jacque Lou Ham:  http://localhost/foxcity-rider2/home.php?token=TKN-07082021122204-LEH&reference_id=USR-05292021035332-O5Z
+- Brian Harapan: http://localhost/foxcity-rider2/home.php?token=TKN-07102021022428-SPC&reference_id=USR-05292021035230-BSN
 
 
 

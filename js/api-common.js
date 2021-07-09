@@ -53,6 +53,18 @@
       window.location   = path_url;
     };
 
+    FoxCAPI.goToPabili = function (user_refid) {
+      var token         = FoxCAPI.getURLParameter('token');
+      var reference_id  = FoxCAPI.getURLParameter('reference_id');
+      alert("Sorry, Pabili is not yet available we're working on it.");
+    };
+
+    FoxCAPI.goToPasakay = function () {
+      var token         = FoxCAPI.getURLParameter('token');
+      var reference_id  = FoxCAPI.getURLParameter('reference_id');
+      alert("Sorry, Pabili is not yet available we're working on it.");
+    };
+
     FoxCAPI.console = function (name, args) {
       if(debug) {
         console.log(name+' | '+ new Date());
